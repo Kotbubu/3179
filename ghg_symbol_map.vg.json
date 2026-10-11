@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/world.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e6e9e7",
+        "stroke": "white",
+        "strokeWidth": 0.6
+      }
+    },
+    {
+      "data": {
+        "url": "data/ghg_by_year.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "emissions_mt": "number",
+            "longitude": "number",
+            "latitude": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "color": "#227c72",
+        "opacity": 0.65,
+        "stroke": "#124e48",
+        "strokeWidth": 0.7
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "emissions_mt",
+          "type": "quantitative",
+          "title": "Emissions (Mt CO₂eq)",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              15980.974040899
+            ],
+            "range": [
+              0,
+              6500
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "values": [
+              100,
+              1000,
+              5000,
+              15000
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.1f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.year == Year_selection"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Segoe UI",
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#526358",
+      "titleColor": "#253d35"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 1970,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "background": "#fbfcf8"
+}

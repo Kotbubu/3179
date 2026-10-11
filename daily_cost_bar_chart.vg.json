@@ -1,12 +1,41 @@
 {
-"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-"title": { "text": "Cheapest European Cities" },
-"data": {
-"url": "https://raw.githubusercontent.com/FIT3179/Datasets/main/city_daily_cost.csv"
-},
-"mark": "bar",
-"encoding": {
-"x": { "field": "daily_cost", "type": "quantitative" },
-"y": { "field": "city", "type": "nominal" }
-}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cheapest European Cities"
+  },
+  "data": {
+    "values": [
+      {
+        "city": "Kiew",
+        "daily_cost": 26
+      },
+      {
+        "city": "Karkow",
+        "daily_cost": 28
+      },
+      {
+        "city": "Belgrade",
+        "daily_cost": 29
+      },
+      {
+        "city": "Bucharest",
+        "daily_cost": 30
+      },
+      {
+        "city": "Sofia",
+        "daily_cost": 33
+      }
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "daily_cost",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "city",
+      "type": "nominal"
+    }
+  }
 }

@@ -15,17 +15,101 @@
 </head>
 
 <body>
+  <main class="page">
 
-  <h1>My Data Visualisation</h1>
+  <h1>A World of Emissions</h1>
 
-  <p>FIT3179 Data Visualisation 2</p>
+  <p>Different paths, unequal footprints: exploring greenhouse gas emissions across countries, sectors and time.</p>
 
+  <h2>Where Are Global Emissions Concentrated?</h2>
+  <p>National greenhouse gas emissions in <span id="selected-year">2025</span>, within a global record spanning 1970–2025. The distribution reveals how unevenly emissions are concentrated across countries.</p>
   <div id="map1"></div>
 
+  <h2>How Have Emissions Changed Over Time?</h2>
+  <p>Compare annual greenhouse gas emissions across six selected countries from 1970 to 2025. Each line traces a country's total emissions, excluding land use, land-use change and forestry.</p>
+  <p class="note">Hover over a line to see its value. Click a country in the legend to highlight it; Shift-click to select several, or double-click to reset.</p>
+  <div id="trend-panel">
+  <div id="trend2" aria-label="Greenhouse gas emissions trends for six selected countries from 1970 to 2025"></div>
+  <div id="trend-legend" class="trend-legend" role="group" aria-label="Highlight countries"></div>
+  </div>
+
+  </main>
+
   <script>
-    vegaEmbed('#map1', 'js/map1.vg.json');
+    vegaEmbed('#map1', 'ghg_symbol_map.vg.json', {renderer: 'svg'})
+      .then(({view}) => {
+        const yearInput = document.querySelector('#map1 input[type="range"]');
+        const yearTrack = document.createElement('span');
+        yearTrack.className = 'year-track';
+        yearInput.before(yearTrack);
+        yearTrack.append(yearInput);
+        const endpoints = document.createElement('span');
+        endpoints.className = 'year-endpoints';
+        endpoints.innerHTML = '<span>1970</span><span>2025</span>';
+        yearTrack.append(endpoints);
+        view.addSignalListener('Year_selection', (_name, year) => {
+          document.getElementById('selected-year').textContent = year;
+        });
+      })
+      .catch(console.error);
+  </script>
+
+  <script>
+    var vg_2 = 'ghg_trend_line.vg.json';
+    vegaEmbed('#trend2', vg_2, {renderer: 'svg'})
+      .then(({view, spec}) => {
+        const legend = document.getElementById('trend-legend');
+        const palette = spec.encoding.color.scale;
+        const buttons = palette.domain.map((country, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'country-key';
+          button.style.setProperty('--country-color', palette.range[index]);
+          button.setAttribute('aria-pressed', 'false');
+          const swatch = document.createElement('span');
+          swatch.className = 'country-swatch';
+          swatch.setAttribute('aria-hidden', 'true');
+          const label = document.createElement('span');
+          label.textContent = country;
+          const check = document.createElement('span');
+          check.className = 'country-check';
+          check.textContent = '✓';
+          check.setAttribute('aria-hidden', 'true');
+          button.append(swatch, label, check);
+          button.addEventListener('click', event => {
+            const current = view.signal('country_selection');
+            const selected = event.shiftKey
+              ? (current.includes(country)
+                ? current.filter(value => value !== country)
+                : [...current, country])
+              : [country];
+            view.signal('country_selection', selected).runAsync().catch(console.error);
+          });
+          legend.append(button);
+          return button;
+        });
+        const updateLegend = (_name, selected) => {
+          buttons.forEach((button, index) => {
+            const active = selected.includes(palette.domain[index]);
+            button.setAttribute('aria-pressed', String(active));
+            button.classList.toggle('is-muted', selected.length > 0 && !active);
+          });
+        };
+        view.addSignalListener('country_selection', updateLegend);
+        updateLegend('country_selection', []);
+        document.getElementById('trend-panel').addEventListener('dblclick', () => {
+          view.signal('country_selection', []).runAsync().catch(console.error);
+        });
+        // Keep the chart fitted to its container without resetting the selection.
+        const resizeObserver = new ResizeObserver(() => {
+          view.resize().runAsync().catch(console.error);
+        });
+        resizeObserver.observe(document.getElementById('trend2'));
+      })
+      .catch(console.error);
   </script>
 
 </body>
 
 </html>
+

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annual greenhouse gas emissions for six selected countries, 1970–2025; excludes land use, land-use change and forestry.",
+  "width": "container",
+  "height": 400,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "#fbfcf8",
+  "data": {
+    "url": "data/ghg_by_year.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "emissions_mt": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "iso_code",
+        "oneOf": [
+          "CHN",
+          "USA",
+          "IND",
+          "RUS",
+          "JPN",
+          "AUS"
+        ]
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "country_selection",
+      "value": []
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.8,
+    "clip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "scale": {
+        "domain": [
+          1970,
+          2025
+        ],
+        "nice": false
+      },
+      "axis": {
+        "format": "d",
+        "values": [
+          1970,
+          1980,
+          1990,
+          2000,
+          2010,
+          2020,
+          2025
+        ],
+        "grid": false,
+        "labelOverlap": true
+      }
+    },
+    "y": {
+      "field": "emissions_mt",
+      "type": "quantitative",
+      "title": "Emissions (Mt CO₂eq)",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 6
+      }
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "China",
+          "United States",
+          "India",
+          "Russian Federation",
+          "Japan",
+          "Australia"
+        ],
+        "range": [
+          "#2764A5",
+          "#E69F00",
+          "#29A7B8",
+          "#8B6BB3",
+          "#596579",
+          "#B47B38"
+        ]
+      },
+      "legend": null
+    },
+    "opacity": {
+      "condition": {
+        "test": "length(country_selection) === 0 || indexof(country_selection, datum.country) >= 0",
+        "value": 1
+      },
+      "value": 0.15
+    },
+    "order": {
+      "field": "year",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "type": "nominal",
+        "title": "Country"
+      },
+      {
+        "field": "year",
+        "type": "quantitative",
+        "title": "Year",
+        "format": "d"
+      },
+      {
+        "field": "emissions_mt",
+        "type": "quantitative",
+        "title": "Emissions (Mt CO₂eq)",
+        "format": ",.1f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Segoe UI",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#526358",
+      "titleColor": "#253d35",
+      "gridColor": "#e2e8de",
+      "domainColor": "#bbc8b8",
+      "titlePadding": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "labelColor": "#526358",
+      "padding": 14
+    }
+  }
+}

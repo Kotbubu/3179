@@ -1,0 +1,5 @@
+Rankings are computed separately for every year across all 220 retained EDGAR countries and territories with finite, non-negative values, before selecting the ten largest 2025 emitters. Rank = 1 + the number of entities with higher emissions (ties share a rank). All annual ranks are shown, including positions below the top ten; the lowest displayed position is 37. Gg are divided by 1,000 to obtain Mt CO₂eq. Excludes land use, land-use change and forestry. International aviation (AIR), international shipping (SEA), Netherlands Antilles (ANT) and Serbia and Montenegro (SCG) are excluded as international sectors or historical groupings. Current territories are retained, including those absent from the map. Missing values are omitted for that year, never treated as zero. EDGAR reporting boundaries are used throughout; these are not reconstructed historical sovereign-state rankings.
+
+Excluded entities: {"AIR": "International aviation", "SEA": "International shipping", "ANT": "Historical Netherlands Antilles grouping", "SCG": "Historical Serbia and Montenegro grouping"}
+
+Missing observations: [('NFK', 2011), ('NFK', 2012)]

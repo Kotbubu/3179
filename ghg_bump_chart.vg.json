@@ -1,0 +1,318 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart: annual global emissions ranks of the ten largest 2025 emitters. All historical ranks retained.",
+  "width": "container",
+  "height": 280,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "#fbfcf8",
+  "data": {
+    "url": "data/ghg_bump_rankings.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "global_rank": "number",
+        "emissions_mt": "number"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "window_start",
+      "value": 1970,
+      "bind": {
+        "input": "range",
+        "min": 1970,
+        "max": 2015,
+        "step": 1,
+        "name": "Ten-year window starts: "
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "scale": {
+        "domain": {
+          "expr": "[window_start, window_start + 10]"
+        },
+        "nice": false
+      },
+      "axis": {
+        "values": {
+          "expr": "[window_start, window_start + 5, window_start + 10]"
+        },
+        "format": "d",
+        "grid": false,
+        "labelOverlap": false,
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "global_rank",
+      "type": "quantitative",
+      "title": "Global emissions rank (1 = highest)",
+      "scale": {
+        "domain": [
+          1,
+          37
+        ],
+        "reverse": true,
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          37
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "China",
+          "United States",
+          "India",
+          "Russian Federation",
+          "Indonesia",
+          "Brazil",
+          "Iran, Islamic Republic of",
+          "Japan",
+          "Saudi Arabia",
+          "Canada"
+        ],
+        "range": [
+          "#2764A5",
+          "#E69F00",
+          "#29A7B8",
+          "#8B6BB3",
+          "#596579",
+          "#B47B38",
+          "#332288",
+          "#88CCEE",
+          "#AA4499",
+          "#666633"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "direction": "vertical",
+        "columns": {
+          "expr": "width < 500 ? 2 : 5"
+        },
+        "labelLimit": 250,
+        "labelFontSize": 12,
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3,
+        "columnPadding": 12,
+        "rowPadding": 7,
+        "padding": 14
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "country_highlight",
+        "value": 1
+      },
+      "value": 0.12
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6
+      },
+      "encoding": {
+        "order": {
+          "field": "year"
+        }
+      },
+      "params": [
+        {
+          "name": "country_highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "country"
+            ],
+            "toggle": "true",
+            "clear": false,
+            "on": []
+          },
+          "bind": "legend"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 36
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "global_rank",
+            "type": "quantitative",
+            "title": "Global rank",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.2f"
+          }
+        ],
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "United States",
+              "India",
+              "Russian Federation",
+              "Indonesia",
+              "Brazil",
+              "Iran, Islamic Republic of",
+              "Japan",
+              "Saudi Arabia",
+              "Canada"
+            ],
+            "range": [
+              "#2764A5",
+              "#E69F00",
+              "#29A7B8",
+              "#8B6BB3",
+              "#596579",
+              "#B47B38",
+              "#332288",
+              "#88CCEE",
+              "#AA4499",
+              "#666633"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100,
+        "opacity": 0
+      },
+      "encoding": {
+        "opacity": {
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "global_rank",
+            "type": "quantitative",
+            "title": "Global rank",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.2f"
+          }
+        ],
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "United States",
+              "India",
+              "Russian Federation",
+              "Indonesia",
+              "Brazil",
+              "Iran, Islamic Republic of",
+              "Japan",
+              "Saudi Arabia",
+              "Canada"
+            ],
+            "range": [
+              "#2764A5",
+              "#E69F00",
+              "#29A7B8",
+              "#8B6BB3",
+              "#596579",
+              "#B47B38",
+              "#332288",
+              "#88CCEE",
+              "#AA4499",
+              "#666633"
+            ]
+          },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Segoe UI",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#526358",
+      "titleColor": "#253d35",
+      "gridColor": "#e2e8de",
+      "domainColor": "#bbc8b8",
+      "titlePadding": 12
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year >= window_start && datum.year <= window_start + 10"
+    }
+  ]
+}

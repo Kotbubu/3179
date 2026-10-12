@@ -34,17 +34,6 @@
       }
     }
   ],
-  "params": [
-    {
-      "name": "country_selection",
-      "value": []
-    }
-  ],
-  "mark": {
-    "type": "line",
-    "strokeWidth": 2.8,
-    "clip": true
-  },
   "encoding": {
     "x": {
       "field": "year",
@@ -106,11 +95,25 @@
           "#B47B38"
         ]
       },
-      "legend": null
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "direction": "vertical",
+        "columns": {
+          "expr": "width < 500 ? 1 : 3"
+        },
+        "labelLimit": 250,
+        "labelFontSize": 13,
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3,
+        "columnPadding": 24,
+        "rowPadding": 10,
+        "padding": 14
+      }
     },
     "opacity": {
       "condition": {
-        "test": "length(country_selection) === 0 || indexof(country_selection, datum.country) >= 0",
+        "param": "trend_highlight",
         "value": 1
       },
       "value": 0.15
@@ -118,26 +121,7 @@
     "order": {
       "field": "year",
       "type": "quantitative"
-    },
-    "tooltip": [
-      {
-        "field": "country",
-        "type": "nominal",
-        "title": "Country"
-      },
-      {
-        "field": "year",
-        "type": "quantitative",
-        "title": "Year",
-        "format": "d"
-      },
-      {
-        "field": "emissions_mt",
-        "type": "quantitative",
-        "title": "Emissions (Mt CO₂eq)",
-        "format": ",.1f"
-      }
-    ]
+    }
   },
   "config": {
     "font": "Segoe UI",
@@ -158,5 +142,128 @@
       "labelColor": "#526358",
       "padding": 14
     }
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8,
+        "clip": true
+      },
+      "params": [
+        {
+          "name": "trend_highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "country"
+            ],
+            "on": [],
+            "toggle": "true",
+            "clear": false
+          },
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2004
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 400
+        },
+        "color": {
+          "value": "#708074"
+        },
+        "opacity": {
+          "value": 0.65
+        },
+        "tooltip": {
+          "value": "2004: China first exceeds United States emissions."
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": [
+              "2004: China overtakes",
+              "the United States."
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {
+          "value": 12
+        },
+        "y": {
+          "value": 12
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#253d35"
+        },
+        "opacity": {
+          "value": 1
+        },
+        "tooltip": {
+          "value": "China first exceeds United States emissions in 2004 in this dataset."
+        }
+      }
+    }
+  ]
 }

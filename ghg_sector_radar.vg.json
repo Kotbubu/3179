@@ -1,0 +1,351 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 600,
+  "height": 340,
+  "padding": {
+    "left": 45,
+    "right": 45,
+    "top": 25,
+    "bottom": 30
+  },
+  "background": "transparent",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "signals": [
+    {
+      "name": "radius",
+      "update": "min(width/2-75,height/2-28)"
+    },
+    {
+      "name": "cx",
+      "update": "width/2"
+    },
+    {
+      "name": "cy",
+      "update": "height/2"
+    }
+  ],
+  "data": [
+    {
+      "name": "profiles",
+      "url": "data/ghg_radar_profiles.json",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "datum.order * 2 * PI / 8 - PI/2",
+          "as": "angle"
+        }
+      ]
+    },
+    {
+      "name": "axes",
+      "values": [
+        {
+          "sector": "Power & heat",
+          "order": 0
+        },
+        {
+          "sector": "Other energy",
+          "order": 1
+        },
+        {
+          "sector": "Manufacturing",
+          "order": 2
+        },
+        {
+          "sector": "Transport",
+          "order": 3
+        },
+        {
+          "sector": "Buildings",
+          "order": 4
+        },
+        {
+          "sector": "Industry processes",
+          "order": 5
+        },
+        {
+          "sector": "Agriculture",
+          "order": 6
+        },
+        {
+          "sector": "Waste & other",
+          "order": 7
+        }
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "datum.order * 2 * PI / 8 - PI/2",
+          "as": "angle"
+        }
+      ]
+    },
+    {
+      "name": "rings",
+      "values": [
+        {
+          "value": 0.1
+        },
+        {
+          "value": 0.2
+        },
+        {
+          "value": 0.3
+        },
+        {
+          "value": 0.4
+        },
+        {
+          "value": 0.5
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "radial",
+      "type": "linear",
+      "domain": [
+        0,
+        0.5
+      ],
+      "range": [
+        0,
+        {
+          "signal": "radius"
+        }
+      ]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Australia",
+        "China",
+        "United States"
+      ],
+      "range": [
+        "#b64d54",
+        "#176e63",
+        "#b56b2a"
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "title": null,
+      "labelFont": "Segoe UI",
+      "labelFontSize": 12,
+      "symbolStrokeWidth": 3,
+      "columnPadding": 25
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "rings"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy"
+          },
+          "startAngle": {
+            "value": 0
+          },
+          "endAngle": {
+            "signal": "2*PI"
+          },
+          "innerRadius": {
+            "scale": "radial",
+            "field": "value"
+          },
+          "outerRadius": {
+            "scale": "radial",
+            "field": "value"
+          },
+          "stroke": {
+            "value": "#d8dacc"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "axes"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy"
+          },
+          "x2": {
+            "signal": "cx+cos(datum.angle)*radius"
+          },
+          "y2": {
+            "signal": "cy+sin(datum.angle)*radius"
+          },
+          "stroke": {
+            "value": "#d8dacc"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "axes"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx+cos(datum.angle)*(radius+14)"
+          },
+          "y": {
+            "signal": "cy+sin(datum.angle)*(radius+14)"
+          },
+          "text": {
+            "field": "sector"
+          },
+          "align": {
+            "signal": "cos(datum.angle) > 0.1 ? 'left' : cos(datum.angle) < -0.1 ? 'right' : 'center'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#526358"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "rings"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx+5"
+          },
+          "y": {
+            "signal": "cy-scale('radial',datum.value)"
+          },
+          "text": {
+            "signal": "format(datum.value,'.0%')"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 9
+          },
+          "fill": {
+            "value": "#6a736c"
+          },
+          "dy": {
+            "value": -2
+          }
+        }
+      }
+    },
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "country_profile",
+          "data": "profiles",
+          "groupby": "country"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {
+            "data": "country_profile"
+          },
+          "sort": {
+            "field": "datum.order"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "cx+cos(datum.angle)*scale('radial',datum.share)"
+              },
+              "y": {
+                "signal": "cy+sin(datum.angle)*scale('radial',datum.share)"
+              },
+              "interpolate": {
+                "value": "linear-closed"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "country"
+              },
+              "strokeWidth": {
+                "signal": "datum.country == 'Australia' ? 2.8 : 1.7"
+              },
+              "strokeOpacity": {
+                "value": 0.9
+              },
+              "fill": {
+                "value": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "symbol",
+      "from": {
+        "data": "profiles"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx+cos(datum.angle)*scale('radial',datum.share)"
+          },
+          "y": {
+            "signal": "cy+sin(datum.angle)*scale('radial',datum.share)"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "country"
+          },
+          "size": {
+            "value": 30
+          },
+          "tooltip": {
+            "signal": "{'Country':datum.country,'Sector':datum.sector,'National emissions share':format(datum.share,'.1%')}"
+          }
+        }
+      }
+    }
+  ]
+}

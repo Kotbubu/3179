@@ -7,6 +7,7 @@ function updateChartInsight(chart, year) {
   if (chartInsights) {
     var element = document.getElementById(chart + '-insight');
     var text = chartInsights[chart][String(year)];
+    if (!element || !text) return;
     var pattern = /\b\d+(?:\.\d+)? times\b|global rank \d+ to \d+|largest rise|leads the countries shown|higher rank|stable rankings/g;
     var lastIndex = 0;
     var match;

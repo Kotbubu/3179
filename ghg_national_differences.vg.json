@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 230,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_sector_shares_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share": "number",
+        "emissions_mt": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "sector",
+      "type": "nominal",
+      "sort": [
+        "Power & heat",
+        "Other energy",
+        "Manufacturing",
+        "Transport",
+        "Buildings",
+        "Industry processes",
+        "Agriculture",
+        "Waste & other"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": -25,
+        "labelLimit": 160,
+        "labelFontSize": 11
+      }
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": [
+        "China",
+        "United States",
+        "India",
+        "Russia",
+        "Indonesia",
+        "Brazil",
+        "Japan",
+        "Germany",
+        "Australia",
+        "South Africa"
+      ],
+      "title": null
+    },
+    "color": {
+      "field": "share",
+      "type": "quantitative",
+      "title": "Share of national emissions",
+      "scale": {
+        "domain": [
+          0,
+          0.5
+        ],
+        "range": [
+          "#edf1e8",
+          "#176e63"
+        ],
+        "nice": false
+      },
+      "legend": {
+        "orient": "bottom",
+        "format": ".0%",
+        "gradientLength": 190,
+        "values": [
+          0.0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "title": "Country"
+      },
+      {
+        "field": "sector",
+        "title": "Sector"
+      },
+      {
+        "field": "share",
+        "type": "quantitative",
+        "title": "Share of national emissions",
+        "format": ".1%"
+      },
+      {
+        "field": "emissions_mt",
+        "type": "quantitative",
+        "title": "Emissions (Mt CO₂eq)",
+        "format": ",.1f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#f7f6ef",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Segoe UI",
+    "axis": {
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 7,
+      "labelColor": "#526358",
+      "grid": false,
+      "labelFont": "Segoe UI",
+      "titleFont": "Segoe UI",
+      "labelFontSize": 11
+    },
+    "legend": {
+      "labelColor": "#526358",
+      "titleColor": "#253d35",
+      "titleFontSize": 12,
+      "labelFont": "Segoe UI",
+      "titleFont": "Segoe UI"
+    },
+    "text": {
+      "font": "Segoe UI"
+    }
+  }
+}

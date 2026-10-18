@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 245,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_global_sectors.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "change_mt": "number",
+        "emissions_1990": "number",
+        "emissions_2025": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "sector",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelLimit": 150
+      }
+    },
+    "x": {
+      "field": "change_mt",
+      "type": "quantitative",
+      "title": "Change in annual emissions, 1990–2025 (Mt CO₂eq)",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 5
+      }
+    },
+    "tooltip": [
+      {
+        "field": "sector",
+        "title": "Sector"
+      },
+      {
+        "field": "change_mt",
+        "type": "quantitative",
+        "title": "Change (Mt CO₂eq)",
+        "format": "+,.0f"
+      },
+      {
+        "field": "emissions_1990",
+        "type": "quantitative",
+        "title": "1990 (Mt CO₂eq)",
+        "format": ",.0f"
+      },
+      {
+        "field": "emissions_2025",
+        "type": "quantitative",
+        "title": "2025 (Mt CO₂eq)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#b1c7ae"
+      },
+      "encoding": {
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 95,
+        "color": "#176e63",
+        "opacity": 1
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "color": "#325548"
+      },
+      "encoding": {
+        "text": {
+          "field": "change_mt",
+          "type": "quantitative",
+          "format": "+,.0f"
+        }
+      }
+    }
+  ],
+  "padding": {
+    "left": 0,
+    "right": 55,
+    "top": 8,
+    "bottom": 4
+  },
+  "config": {
+    "font": "Segoe UI",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#dedfd4",
+      "gridOpacity": 0.6,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
+      "titleFontWeight": 400,
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "labelPadding": 8
+    },
+    "axisY": {
+      "grid": false
+    }
+  }
+}

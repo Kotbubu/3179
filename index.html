@@ -21,13 +21,32 @@
 
   <p>Different paths, <strong>unequal footprints</strong>: exploring greenhouse gas emissions across countries, sectors and time.</p>
 
-<section class="chart-section" aria-labelledby="chart-heading-1"><h2 id="chart-heading-1">Where Are Global Emissions Concentrated?</h2><div class="section-header"><div class="section-copy"><p>National <strong>greenhouse gas emissions</strong> in <span id="selected-year">2025</span>. Explore how emissions are <strong>distributed across countries</strong>, then move the slider to compare years.</p></div><p id="map-insight" class="chart-insight" aria-live="polite"></p></div>
+
+    <aside class="units-guide" aria-labelledby="units-heading">
+    <h2 id="units-heading">Reading the numbers</h2>
+    <div class="units-columns">
+      <div class="units-item">
+        <h3>What is CO₂eq?</h3>
+        <p><span>Greenhouse gases trap different amounts of heat.</span><span>CO₂eq means carbon dioxide equivalent.</span><span>It puts their warming effects on one scale.</span><span>This comparison uses a 100-year time horizon.</span></p>
+      </div>
+      <div class="units-item">
+        <h3>Total or per person?</h3>
+        <p><span><strong>1 Mt CO₂eq = one million tonnes CO₂ equivalent.</strong></span><span>Total emissions describe a whole country.</span><span>Per-person emissions divide that total by population.</span><span>They are measured in tonnes CO₂eq per person.</span></p>
+      </div>
+    </div>
+  </aside>
+<section class="chart-section" aria-labelledby="chart-heading-1"><h2 id="chart-heading-1">Where Are Global Emissions Concentrated?</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare total emissions with emissions per person.</span><span class="reading-line">Both maps show <span id="selected-year">2025</span> using different measures.</span><span class="reading-line">Move the slider to compare the same year.</span></p></div><p id="map-insight" class="chart-insight" aria-live="polite"></p></div>
   
-  <div id="map1"></div>
+  <div class="map-comparison">
+    <article class="map-card"><h3>National greenhouse gas emissions</h3><p><span class="reading-line">Year: <span class="map-title-year">2025</span> · Million tonnes CO₂eq</span><span class="reading-line">Larger circles mean higher total emissions.</span></p><div id="map1"></div></article>
+    <article class="map-card"><h3>Greenhouse gas emissions per person</h3><p><span class="reading-line">Year: <span class="map-title-year">2025</span> · Tonnes CO₂eq per person</span><span class="reading-line">Darker colours mean higher emissions per person.</span></p><div id="map-per-capita"></div></article>
+  </div>
+  <div class="shared-year"><label for="map-year">Year: <output id="map-year-value">2025</output></label><div class="shared-track"><input id="map-year" type="range" min="1970" max="2025" step="1" value="2025"><div class="year-endpoints"><span>1970</span><span>2025</span></div></div></div>
   
 
   </section>
-<section class="chart-section" aria-labelledby="chart-heading-2"><h2 id="chart-heading-2">How Have Emissions Changed Over Time?</h2><div class="section-header"><div class="section-copy"><p><strong>Six countries</strong>, six different paths from 1970 to 2025. Compare their <strong>annual greenhouse gas emissions</strong>, excluding land use and forestry.</p></div><p class="chart-insight">From 1970 to 2025, China’s emissions grow about <strong>9.5-fold</strong> and India’s about <strong>6.4-fold</strong>. US emissions follow a different path, ending <strong>16% below</strong> their 2000 peak.</p></div>
+<div class="story-charts">
+<section class="chart-section" aria-labelledby="chart-heading-2"><p class="section-kicker">02 / CHANGING TRAJECTORIES</p><h2 id="chart-heading-2">Six countries, different emissions paths</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare six countries from 1970 to 2025.</span><span class="reading-line">Lines show annual emissions in Mt CO₂eq.</span><span class="reading-line">Land use and forestry are excluded.</span></p></div><p class="chart-insight"><span class="reading-line">China’s emissions grew <strong>9.5-fold</strong> since 1970.</span><span class="reading-line">India’s grew <strong>6.4-fold</strong> over the same period.</span><span class="reading-line">US emissions ended <strong>16% below</strong> their 2000 peak.</span></p></div>
   
   
   <div id="trend-panel">
@@ -37,44 +56,73 @@
 
   
 
-  <p class="note"><strong>Hover</strong> for values. Click <strong>legend names</strong> to highlight countries; click again to deselect.</p></section>
-<section class="chart-section" aria-labelledby="chart-heading-3"><h2 id="chart-heading-3">How Have Global Emissions Rankings Shifted?</h2><div class="section-header"><div class="section-copy"><p>Tracking the <strong>changing positions</strong> of the world’s major greenhouse gas emitters, 1970–2025. Higher positions mean <strong>higher emissions</strong> relative to other countries.</p></div><p id="bump-insight" class="chart-insight" aria-live="polite"></p></div>
+  <p class="note"><span class="reading-line">Country names sit beside their corresponding lines.</span><span class="reading-line">Hover over lines to compare exact values.</span></p></section>
+<section class="chart-section" aria-labelledby="chart-heading-3"><p class="section-kicker">03 / SHIFTING POSITIONS</p><h2 id="chart-heading-3">The changing order of global emitters</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Follow the ten largest emitters of 2025.</span><span class="reading-line">Their historical ranks include all eligible countries.</span><span class="reading-line">A higher position means greater annual emissions.</span></p></div><p class="chart-insight"><span class="reading-line">Ranks use a fixed scale throughout.</span><span class="reading-line">All years appear together for direct comparison.</span><span class="reading-line">Positions reflect totals, rather than emissions per person.</span></p></div>
   
   
   <div id="bump-panel">
-    <p id="bump-window-label" class="bump-window-label" aria-live="polite">1970–1980 </p>
     
     <div id="bump3" aria-label="Annual global emissions rankings of the ten largest 2025 emitters"></div>
 
 
-  </div><p class="note"><strong>Hover</strong> for values. Click <strong>legend names</strong> to highlight countries; click again to deselect. Move the slider to explore <strong>ten years</strong> at a time.</p></section>
+  </div><p class="note"><span class="reading-line">Country names sit beside their corresponding lines.</span><span class="reading-line">Hover over points for exact ranks and emissions.</span></p></section>
+</div>
+
+<section class="chart-section" aria-labelledby="waffle-heading">
+ <p class="section-kicker">04 / PEOPLE AND EMISSIONS</p>
+ <h2 id="waffle-heading">Ten countries, an unequal emissions footprint</h2>
+ <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare the same ten countries across both measures.</span><span class="reading-line">Each square represents one percentage point.</span></p></div><p class="chart-insight"><span class="reading-line">They produce <strong>67.8%</strong> of covered emissions.</span><span class="reading-line">They hold <strong>50.8%</strong> of the covered population.</span></p></div>
+ <div class="waffle-comparison">
+  <article><h3>Share of emissions</h3><p class="waffle-number">67.8%</p><div id="emissions-waffle" aria-label="Ten largest emitters share of covered emissions in 2025"></div></article>
+  <article><h3>Share of population</h3><p class="waffle-number">50.8%</p><div id="population-waffle" aria-label="Same ten countries share of covered population in 2025"></div></article>
+ </div>
+ <div class="waffle-key"><span><i class="waffle-swatch top-ten"></i>Ten largest emitters</span><span><i class="waffle-swatch other-countries"></i>Other covered countries</span></div>
+ <p class="note"><span class="reading-line">2025: 203 countries and territories with matched data.</span><span class="reading-line">Both denominators use exactly the same coverage.</span><span class="reading-line">Squares round shares to the nearest percentage point.</span><span class="reading-line">International transport and land use are excluded.</span></p>
+ <details class="note"><summary>Which ten countries?</summary><p>China, United States, India, Russia, Indonesia, Brazil, Iran, Japan, Saudi Arabia and Canada.</p><p>Sources: EDGAR 2026 and World Bank SP.POP.TOTL.</p></details>
+</section>
+<section class="chart-section" aria-labelledby="global-sectors-heading">
+ <p class="section-kicker">05 / THE GLOBAL MIX</p>
+ <h2 id="global-sectors-heading">What drives the world’s emissions?</h2>
+ <div class="section-header"><div class="section-copy"><p><span class="reading-line">Each rectangle represents an emissions source.</span><span class="reading-line">Its area shows its global share in 2025.</span></p></div><p class="chart-insight"><span class="reading-line">Power and heat account for <strong>29%</strong>.</span><span class="reading-line">Explore the blocks to compare the remaining sources.</span></p></div>
+ <div id="global-sectors-chart" aria-label="Global greenhouse gas emissions by source in 2025"></div>
+ <p class="note"><span class="reading-line">Hover for global shares and emission totals.</span><span class="reading-line">Includes international transport; excludes land use and forestry.</span></p>
+</section>
+<section class="chart-section sector-section" aria-labelledby="chart-heading-4">
+  <p class="section-kicker">06 / NATIONAL DIFFERENCES</p>
+  <h2 id="chart-heading-4">Different countries, different sources</h2>
+  <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare national emissions structures in 2025.</span><span class="reading-line">Each row totals 100% across eight sector groups.</span></p></div><p class="chart-insight"><span class="reading-line">Darker cells reveal each country’s dominant sources.</span><span class="reading-line">Percentages compare structure, rather than national size.</span></p></div>
+  <div id="sector4" aria-label="2025 sector shares of greenhouse gas emissions in ten selected countries"></div>
+  <p class="note"><span class="reading-line">Hover for sector shares and absolute emissions.</span><span class="reading-line">Source: EDGAR 2026, IPCC 2006 sector classification.</span><span class="reading-line">Land use and forestry are excluded.</span></p>
+</section>
+<section class="chart-section" aria-labelledby="income-heading">
+ <p class="section-kicker">07 / INCOME AND INEQUALITY</p>
+ <h2 id="income-heading">Does higher income mean a larger footprint?</h2>
+ <div class="section-header"><div class="section-copy"><p><span class="reading-line">Each dot represents one country or territory.</span><span class="reading-line">Compare 2025 emissions per person across income groups.</span></p></div><p class="chart-insight"><span class="reading-line" id="income-selected-summary">Australia emits 20.9 tonnes CO₂eq per person.</span><span class="reading-line" id="income-selected-comparison">Its footprint exceeds the high-income country median.</span></p></div>
+ <div id="income-country-control"></div>
+ <div id="income-jitter-chart" aria-label="2025 national greenhouse gas emissions per person by World Bank income group, highlighting Australia"></div>
+ <p class="note"><span class="reading-line">Horizontal marks show each group’s median country value.</span><span class="reading-line">Dots spread sideways only to reduce overlap.</span><span class="reading-line">All 203 matched countries use the same linear scale.</span></p>
+ <details class="note"><summary>Data and grouping</summary><p>Emissions and population: 2025. Income groups come from the downloaded World Bank metadata snapshot, with population workbook updated 8 October 2026. These are not historical income classifications. Country medians give each country equal weight; they are not population-weighted group averages. Association does not establish causation. Sources: EDGAR 2026 and World Bank SP.POP.TOTL. Land use and forestry excluded.</p></details>
+</section>
+<section class="chart-section" aria-labelledby="sector-growth-heading">
+ <p class="section-kicker">08 / SOURCES OF GROWTH</p>
+ <h2 id="sector-growth-heading">Where has the extra pollution come from?</h2>
+ <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare sector emissions in 1990 and 2025.</span><span class="reading-line">Longer stems mean larger absolute increases.</span></p></div><p class="chart-insight"><span class="reading-line">Power and heat drive the largest increase.</span><span class="reading-line">They contribute <strong>37%</strong> of the net growth.</span></p></div>
+ <div id="sector-growth-chart" aria-label="Change in global sector greenhouse gas emissions from 1990 to 2025"></div>
+ <p class="note"><span class="reading-line">Values show changes in annual emissions, not cumulative totals.</span><span class="reading-line">Source: EDGAR 2026, IPCC 2006 sector data.</span><span class="reading-line">Includes international transport; excludes land use and forestry.</span></p>
+</section>
   </main>
 
   <script src="chart_annotations.js"></script>
-  <script>
-    vegaEmbed('#map1', 'ghg_symbol_map.vg.json', {renderer: 'svg'})
-      .then(({view}) => {
-        const yearInput = document.querySelector('#map1 input[type="range"]');
-        const yearTrack = document.createElement('span');
-        yearTrack.className = 'year-track';
-        yearInput.before(yearTrack);
-        yearTrack.append(yearInput);
-        const endpoints = document.createElement('span');
-        endpoints.className = 'year-endpoints';
-        endpoints.innerHTML = '<span>1970</span><span>2025</span>';
-        yearTrack.append(endpoints);
-        view.addSignalListener('Year_selection', (_name, year) => {
-          document.getElementById('selected-year').textContent = year;
-          updateChartInsight('map', year);
-        });
-      })
-      .catch(console.error);
-  </script>
+  <script src="maps_comparison.js"></script>
 
   <script src="trend_chart.js"></script>
 
 <!-- External JavaScript, following the Week 7 embedding example. -->
 <script src="bump_chart.js"></script>
+<script>vegaEmbed("#sector4", "ghg_national_differences.vg.json", {renderer: "svg", actions: false}).catch(console.error);</script>
+<script src="sector_story.js"></script>
+<script src="waffle_comparison.js"></script>
+<script src="income_distribution.js"></script>
 </body>
 
 </html>

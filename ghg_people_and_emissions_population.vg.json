@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 220,
+  "height": 220,
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_waffle_shares.json"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "metric",
+        "equal": "Population"
+      }
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#f7f6ef",
+    "strokeWidth": 2,
+    "cornerRadius": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "column",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.03
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "sort": "ascending",
+      "scale": {
+        "paddingInner": 0.03
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Ten largest emitters",
+          "Other covered countries"
+        ],
+        "range": [
+          "#176e63",
+          "#dce5d5"
+        ]
+      },
+      "legend": null
+    },
+    "tooltip": [
+      {
+        "field": "metric",
+        "title": "Measure"
+      },
+      {
+        "field": "group",
+        "title": "Square represents"
+      },
+      {
+        "field": "exact_share",
+        "type": "quantitative",
+        "title": "Ten-country share (unrounded)",
+        "format": ".1%"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Segoe UI"
+  }
+}

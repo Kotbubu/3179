@@ -1,0 +1,801 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart: annual global emissions ranks of the ten largest 2025 emitters. All historical ranks retained.",
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_bump_rankings.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "global_rank": "number",
+        "emissions_mt": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "scale": {
+        "domain": [
+          1970,
+          2025
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1970,
+          1980,
+          1990,
+          2000,
+          2010,
+          2020,
+          2025
+        ],
+        "format": "d",
+        "grid": false,
+        "labelAngle": 0,
+        "labelOverlap": true
+      }
+    },
+    "y": {
+      "field": "global_rank",
+      "type": "quantitative",
+      "title": "Global rank · 1 = highest emissions",
+      "scale": {
+        "domain": [
+          1,
+          37
+        ],
+        "reverse": true,
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          37
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "China",
+          "United States",
+          "India",
+          "Russian Federation",
+          "Indonesia",
+          "Brazil",
+          "Iran, Islamic Republic of",
+          "Japan",
+          "Saudi Arabia",
+          "Canada"
+        ],
+        "range": [
+          "#176e63",
+          "#b56b2a",
+          "#548faf",
+          "#8c719d",
+          "#788345",
+          "#b19a48",
+          "#5e7396",
+          "#66756c",
+          "#ac7b8d",
+          "#6c787f"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "order": {
+          "field": "year"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 12
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "global_rank",
+            "type": "quantitative",
+            "title": "Global rank",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.2f"
+          }
+        ],
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "United States",
+              "India",
+              "Russian Federation",
+              "Indonesia",
+              "Brazil",
+              "Iran, Islamic Republic of",
+              "Japan",
+              "Saudi Arabia",
+              "Canada"
+            ],
+            "range": [
+              "#176e63",
+              "#b56b2a",
+              "#548faf",
+              "#8c719d",
+              "#788345",
+              "#b19a48",
+              "#5e7396",
+              "#66756c",
+              "#ac7b8d",
+              "#6c787f"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100,
+        "opacity": 0
+      },
+      "encoding": {
+        "opacity": {
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "global_rank",
+            "type": "quantitative",
+            "title": "Global rank",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Emissions (Mt CO₂eq)",
+            "format": ",.2f"
+          }
+        ],
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "United States",
+              "India",
+              "Russian Federation",
+              "Indonesia",
+              "Brazil",
+              "Iran, Islamic Republic of",
+              "Japan",
+              "Saudi Arabia",
+              "Canada"
+            ],
+            "range": [
+              "#176e63",
+              "#b56b2a",
+              "#548faf",
+              "#8c719d",
+              "#788345",
+              "#b19a48",
+              "#5e7396",
+              "#66756c",
+              "#ac7b8d",
+              "#6c787f"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'USA' && datum.year == 1980"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'USA' && datum.year == 1980"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CHN' && datum.year == 2016"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CHN' && datum.year == 2016"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'RUS' && datum.year == 1973"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'RUS' && datum.year == 1973"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IND' && datum.year == 1995"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IND' && datum.year == 1995"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'JPN' && datum.year == 1984"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'JPN' && datum.year == 1984"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CAN' && datum.year == 1975"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CAN' && datum.year == 1975"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'BRA' && datum.year == 1993"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'BRA' && datum.year == 1993"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IDN' && datum.year == 1988"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IDN' && datum.year == 1988"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IRN' && datum.year == 2004"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IRN' && datum.year == 2004"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'SAU' && datum.year == 1996"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'SAU' && datum.year == 1996"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country == 'Iran, Islamic Republic of' ? 'Iran' : datum.country",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 14,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Segoe UI",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "labelColor": "#6a736c",
+      "titleColor": "#46584d",
+      "gridColor": "#dedfd4",
+      "domainColor": "#bbc8b8",
+      "titlePadding": 12,
+      "domain": false,
+      "ticks": false,
+      "gridOpacity": 0.65,
+      "labelPadding": 8,
+      "titleFontWeight": 400,
+      "labelFont": "Segoe UI",
+      "titleFont": "Segoe UI"
+    },
+    "legend": {
+      "labelFont": "Segoe UI",
+      "titleFont": "Segoe UI"
+    },
+    "text": {
+      "font": "Segoe UI"
+    }
+  },
+  "padding": {
+    "left": 4,
+    "right": 12,
+    "top": 20,
+    "bottom": 8
+  }
+}

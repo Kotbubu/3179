@@ -1,0 +1,669 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 280,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_income_distribution_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "group_index": "number",
+        "jitter": "number",
+        "ghg_per_capita": "number",
+        "population": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.group_index + datum.jitter",
+      "as": "jitter_x"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "jitter_x",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          -0.55,
+          3.55
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "labelExpr": "['Low income','Lower middle income','Upper middle income','High income'][datum.value]",
+        "labelAngle": 0,
+        "labelLimit": 180,
+        "grid": false,
+        "labelPadding": 14
+      }
+    },
+    "y": {
+      "field": "ghg_per_capita",
+      "type": "quantitative",
+      "title": "Annual emissions per person (tonnes CO₂eq)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ],
+        "nice": false,
+        "zero": true
+      },
+      "axis": {
+        "values": [
+          0,
+          20,
+          40,
+          60,
+          80,
+          100
+        ],
+        "format": ".0f"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "title": "Country"
+      },
+      {
+        "field": "income_group",
+        "title": "Income group"
+      },
+      {
+        "field": "ghg_per_capita",
+        "type": "quantitative",
+        "title": "2025 tonnes CO₂eq per person",
+        "format": ".2f"
+      },
+      {
+        "field": "population",
+        "type": "quantitative",
+        "title": "Population",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "size": 42,
+        "opacity": 0.7,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "income_group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Low income",
+              "Lower middle income",
+              "Upper middle income",
+              "High income"
+            ],
+            "range": [
+              "#7d9252",
+              "#36958b",
+              "#5487b0",
+              "#8770a2"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "median",
+              "field": "ghg_per_capita",
+              "as": "median_value"
+            }
+          ],
+          "groupby": [
+            "income_group",
+            "group_index"
+          ]
+        },
+        {
+          "calculate": "datum.group_index - 0.32",
+          "as": "left"
+        },
+        {
+          "calculate": "datum.group_index + 0.32",
+          "as": "right"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#365248"
+      },
+      "encoding": {
+        "x": {
+          "field": "left",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "right"
+        },
+        "y": {
+          "field": "median_value",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "income_group",
+            "title": "Income group"
+          },
+          {
+            "field": "median_value",
+            "type": "quantitative",
+            "title": "Median country value (tonnes/person)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == selected_country"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 120,
+        "color": "#b56b2a",
+        "stroke": "#713e15",
+        "strokeWidth": 1,
+        "opacity": 1
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == selected_country"
+        },
+        {
+          "calculate": "datum.country + ' · ' + format(datum.ghg_per_capita, '.1f')",
+          "as": "selected_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -9,
+        "dy": -13,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#95511e"
+      },
+      "encoding": {
+        "text": {
+          "field": "selected_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Segoe UI",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "domain": false,
+      "ticks": false,
+      "labelFont": "Segoe UI",
+      "titleFont": "Segoe UI",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "gridColor": "#dedfd4",
+      "gridOpacity": 0.65,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
+      "titlePadding": 12
+    }
+  },
+  "params": [
+    {
+      "name": "selected_country",
+      "value": "AUS",
+      "bind": {
+        "input": "select",
+        "options": [
+          "AFG",
+          "ALB",
+          "DZA",
+          "ASM",
+          "AGO",
+          "ATG",
+          "ARG",
+          "ARM",
+          "ABW",
+          "AUS",
+          "AUT",
+          "AZE",
+          "BHS",
+          "BHR",
+          "BGD",
+          "BRB",
+          "BLR",
+          "BEL",
+          "BLZ",
+          "BEN",
+          "BMU",
+          "BTN",
+          "BOL",
+          "BIH",
+          "BWA",
+          "BRA",
+          "BRN",
+          "BGR",
+          "BFA",
+          "BDI",
+          "KHM",
+          "CMR",
+          "CAN",
+          "CPV",
+          "CYM",
+          "CAF",
+          "TCD",
+          "CHL",
+          "CHN",
+          "COL",
+          "COM",
+          "COG",
+          "COD",
+          "CRI",
+          "CIV",
+          "HRV",
+          "CUB",
+          "CYP",
+          "CZE",
+          "DNK",
+          "DJI",
+          "DMA",
+          "DOM",
+          "ECU",
+          "EGY",
+          "SLV",
+          "GNQ",
+          "ERI",
+          "EST",
+          "ETH",
+          "FRO",
+          "FJI",
+          "FIN",
+          "FRA",
+          "PYF",
+          "GAB",
+          "GMB",
+          "GEO",
+          "DEU",
+          "GHA",
+          "GIB",
+          "GRC",
+          "GRL",
+          "GRD",
+          "GUM",
+          "GTM",
+          "GIN",
+          "GNB",
+          "GUY",
+          "HTI",
+          "HND",
+          "HKG",
+          "HUN",
+          "ISL",
+          "IND",
+          "IDN",
+          "IRN",
+          "IRQ",
+          "IRL",
+          "ISR",
+          "ITA",
+          "JAM",
+          "JPN",
+          "JOR",
+          "KAZ",
+          "KEN",
+          "KIR",
+          "PRK",
+          "KOR",
+          "KWT",
+          "KGZ",
+          "LAO",
+          "LVA",
+          "LBN",
+          "LSO",
+          "LBR",
+          "LBY",
+          "LTU",
+          "LUX",
+          "MAC",
+          "MKD",
+          "MDG",
+          "MWI",
+          "MYS",
+          "MDV",
+          "MLI",
+          "MLT",
+          "MHL",
+          "MRT",
+          "MUS",
+          "MEX",
+          "FSM",
+          "MDA",
+          "MNG",
+          "MAR",
+          "MOZ",
+          "MMR",
+          "NAM",
+          "NRU",
+          "NPL",
+          "NLD",
+          "NCL",
+          "NZL",
+          "NIC",
+          "NER",
+          "NGA",
+          "MNP",
+          "NOR",
+          "OMN",
+          "PAK",
+          "PLW",
+          "PAN",
+          "PNG",
+          "PRY",
+          "PER",
+          "PHL",
+          "POL",
+          "PRT",
+          "PRI",
+          "QAT",
+          "ROU",
+          "RUS",
+          "RWA",
+          "KNA",
+          "LCA",
+          "VCT",
+          "WSM",
+          "STP",
+          "SAU",
+          "SEN",
+          "SYC",
+          "SLE",
+          "SGP",
+          "SVK",
+          "SVN",
+          "SLB",
+          "SOM",
+          "ZAF",
+          "ESP",
+          "LKA",
+          "SDN",
+          "SUR",
+          "SWZ",
+          "SWE",
+          "CHE",
+          "SYR",
+          "TJK",
+          "TZA",
+          "THA",
+          "TLS",
+          "TGO",
+          "TON",
+          "TTO",
+          "TUN",
+          "TUR",
+          "TKM",
+          "TCA",
+          "TUV",
+          "UGA",
+          "UKR",
+          "ARE",
+          "GBR",
+          "USA",
+          "URY",
+          "UZB",
+          "VUT",
+          "VEN",
+          "VNM",
+          "VGB",
+          "VIR",
+          "YEM",
+          "ZMB",
+          "ZWE"
+        ],
+        "labels": [
+          "Afghanistan",
+          "Albania",
+          "Algeria",
+          "American Samoa",
+          "Angola",
+          "Antigua and Barbuda",
+          "Argentina",
+          "Armenia",
+          "Aruba",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Barbados",
+          "Belarus",
+          "Belgium",
+          "Belize",
+          "Benin",
+          "Bermuda",
+          "Bhutan",
+          "Bolivia",
+          "Bosnia and Herzegovina",
+          "Botswana",
+          "Brazil",
+          "Brunei Darussalam",
+          "Bulgaria",
+          "Burkina Faso",
+          "Burundi",
+          "Cambodia",
+          "Cameroon",
+          "Canada",
+          "Cape Verde",
+          "Cayman Islands",
+          "Central African Republic",
+          "Chad",
+          "Chile",
+          "China",
+          "Colombia",
+          "Comoros",
+          "Congo",
+          "Congo_the Democratic Republic of the",
+          "Costa Rica",
+          "Cote d'Ivoire",
+          "Croatia",
+          "Cuba",
+          "Cyprus",
+          "Czech Republic",
+          "Denmark",
+          "Djibouti",
+          "Dominica",
+          "Dominican Republic",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "Equatorial Guinea",
+          "Eritrea",
+          "Estonia",
+          "Ethiopia",
+          "Faroe Islands",
+          "Fiji",
+          "Finland",
+          "France",
+          "French Polynesia",
+          "Gabon",
+          "Gambia",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Gibraltar",
+          "Greece",
+          "Greenland",
+          "Grenada",
+          "Guam",
+          "Guatemala",
+          "Guinea",
+          "Guinea-Bissau",
+          "Guyana",
+          "Haiti",
+          "Honduras",
+          "Hong Kong",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "Iran, Islamic Republic of",
+          "Iraq",
+          "Ireland",
+          "Israel",
+          "Italy",
+          "Jamaica",
+          "Japan",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Kiribati",
+          "Korea, Democratic People's Republic of",
+          "Korea, Republic of",
+          "Kuwait",
+          "Kyrgyzstan",
+          "Lao People's Democratic Republic",
+          "Latvia",
+          "Lebanon",
+          "Lesotho",
+          "Liberia",
+          "Libyan Arab Jamahiriya",
+          "Lithuania",
+          "Luxembourg",
+          "Macao",
+          "Macedonia, the former Yugoslav Republic of",
+          "Madagascar",
+          "Malawi",
+          "Malaysia",
+          "Maldives",
+          "Mali",
+          "Malta",
+          "Marshall Islands",
+          "Mauritania",
+          "Mauritius",
+          "Mexico",
+          "Micronesia, Federated States of",
+          "Moldova, Republic of",
+          "Mongolia",
+          "Morocco",
+          "Mozambique",
+          "Myanmar",
+          "Namibia",
+          "Nauru",
+          "Nepal",
+          "Netherlands",
+          "New Caledonia",
+          "New Zealand",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Northern Mariana Islands",
+          "Norway",
+          "Oman",
+          "Pakistan",
+          "Palau",
+          "Panama",
+          "Papua New Guinea",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Poland",
+          "Portugal",
+          "Puerto Rico",
+          "Qatar",
+          "Romania",
+          "Russian Federation",
+          "Rwanda",
+          "Saint Kitts and Nevis",
+          "Saint Lucia",
+          "Saint Vincent and the Grenadines",
+          "Samoa",
+          "Sao Tome and Principe",
+          "Saudi Arabia",
+          "Senegal",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapore",
+          "Slovakia",
+          "Slovenia",
+          "Solomon Islands",
+          "Somalia",
+          "South Africa",
+          "Spain",
+          "Sri Lanka",
+          "Sudan",
+          "Suriname",
+          "Swaziland",
+          "Sweden",
+          "Switzerland",
+          "Syrian Arab Republic",
+          "Tajikistan",
+          "Tanzania_United Republic of",
+          "Thailand",
+          "Timor-Leste",
+          "Togo",
+          "Tonga",
+          "Trinidad and Tobago",
+          "Tunisia",
+          "Turkey",
+          "Turkmenistan",
+          "Turks and Caicos Islands",
+          "Tuvalu",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "United Kingdom",
+          "United States",
+          "Uruguay",
+          "Uzbekistan",
+          "Vanuatu",
+          "Venezuela",
+          "Viet Nam",
+          "Virgin Islands_British",
+          "Virgin Islands_USA",
+          "Yemen",
+          "Zambia",
+          "Zimbabwe"
+        ],
+        "name": "Highlight country: "
+      }
+    }
+  ]
+}

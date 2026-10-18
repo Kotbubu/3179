@@ -1,0 +1,330 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 530,
+  "height": 420,
+  "padding": {
+    "left": 15,
+    "right": 15,
+    "top": 5,
+    "bottom": 15
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "signals": [
+    {
+      "name": "cx",
+      "update": "width/2"
+    },
+    {
+      "name": "cy",
+      "value": 185
+    },
+    {
+      "name": "inner",
+      "value": 43
+    },
+    {
+      "name": "band",
+      "value": 22
+    },
+    {
+      "name": "gap",
+      "value": 0.36
+    }
+  ],
+  "data": [
+    {
+      "name": "cells",
+      "url": "data/ghg_australia_sector_rings.json"
+    },
+    {
+      "name": "sector_labels",
+      "values": [
+        {
+          "sector": "Power & heat",
+          "order": 0
+        },
+        {
+          "sector": "Other energy",
+          "order": 1
+        },
+        {
+          "sector": "Manufacturing",
+          "order": 2
+        },
+        {
+          "sector": "Transport",
+          "order": 3
+        },
+        {
+          "sector": "Buildings",
+          "order": 4
+        },
+        {
+          "sector": "Industry processes",
+          "order": 5
+        },
+        {
+          "sector": "Agriculture",
+          "order": 6
+        },
+        {
+          "sector": "Waste & other",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "name": "ring_labels",
+      "values": [
+        {
+          "year": 1990,
+          "ring": 0
+        },
+        {
+          "year": 2000,
+          "ring": 1
+        },
+        {
+          "year": 2010,
+          "ring": 2
+        },
+        {
+          "year": 2020,
+          "ring": 3
+        },
+        {
+          "year": 2025,
+          "ring": 4
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "colour",
+      "type": "linear",
+      "domain": [
+        -9,
+        0,
+        9
+      ],
+      "range": [
+        "#42829a",
+        "#faf3e1",
+        "#c66b41"
+      ],
+      "zero": false
+    }
+  ],
+  "legends": [
+    {
+      "fill": "colour",
+      "type": "gradient",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "title": [
+        "Change from 1990 sector share",
+        "Percentage points"
+      ],
+      "titleFont": "Segoe UI",
+      "labelFont": "Segoe UI",
+      "titleFontSize": 11,
+      "labelFontSize": 10,
+      "gradientLength": 240,
+      "gradientThickness": 10,
+      "values": [
+        -9,
+        0,
+        9
+      ],
+      "format": "+.0f",
+      "titleLimit": 450
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {
+        "data": "cells"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy"
+          },
+          "startAngle": {
+            "signal": "gap/2 + datum.sector_index * (2*PI-gap)/8"
+          },
+          "endAngle": {
+            "signal": "gap/2 + (datum.sector_index+1) * (2*PI-gap)/8"
+          },
+          "innerRadius": {
+            "signal": "inner+datum.ring*band"
+          },
+          "outerRadius": {
+            "signal": "inner+(datum.ring+1)*band"
+          },
+          "fill": {
+            "scale": "colour",
+            "field": "change_pp"
+          },
+          "stroke": {
+            "value": "#f7f6ef"
+          },
+          "strokeWidth": {
+            "value": 0.6
+          },
+          "tooltip": {
+            "signal": "{'Country':'Australia','Sector':datum.sector,'Year':datum.year,'National emissions share':format(datum.share,'.1%'),'Change from 1990 (percentage points)':format(datum.change_pp,'+.1f')}"
+          }
+        },
+        "hover": {
+          "stroke": {
+            "value": "#253d35"
+          },
+          "strokeWidth": {
+            "value": 1.4
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "sector_labels"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx+sin(gap/2+(datum.order+0.5)*(2*PI-gap)/8)*174"
+          },
+          "y": {
+            "signal": "cy-cos(gap/2+(datum.order+0.5)*(2*PI-gap)/8)*174"
+          },
+          "text": {
+            "signal": "datum.sector == 'Industry processes' ? ['Industry','processes'] : datum.sector == 'Waste & other' ? ['Waste &','other'] : datum.sector"
+          },
+          "align": {
+            "signal": "sin(gap/2+(datum.order+0.5)*(2*PI-gap)/8)>0 ? 'left' : 'right'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "lineHeight": {
+            "value": 13
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#526358"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "ring_labels"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy-inner-(datum.ring+0.5)*band"
+          },
+          "text": {
+            "field": "year"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 9
+          },
+          "fill": {
+            "value": "#66756c"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy-4"
+          },
+          "text": {
+            "value": "Australia"
+          },
+          "align": {
+            "value": "center"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#253d35"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "cx"
+          },
+          "y": {
+            "signal": "cy+13"
+          },
+          "text": {
+            "value": "Sector mix"
+          },
+          "align": {
+            "value": "center"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "value": 10
+          },
+          "fill": {
+            "value": "#66756c"
+          }
+        }
+      }
+    }
+  ]
+}

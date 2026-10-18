@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 800,
+  "height": 265,
+  "padding": 0,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "signals": [
+    {
+      "name": "width",
+      "init": "containerSize()[0] || 800",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "containerSize()[0] || 800"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "source",
+      "url": "data/ghg_global_sectors.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "emissions_2025": "number",
+          "share": "number"
+        }
+      },
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "'root'",
+          "as": "parent"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.sector",
+          "as": "id"
+        }
+      ]
+    },
+    {
+      "name": "hierarchy_root",
+      "values": [
+        {
+          "id": "root",
+          "parent": null,
+          "sector": "All sectors"
+        }
+      ]
+    },
+    {
+      "name": "tree",
+      "source": [
+        "source",
+        "hierarchy_root"
+      ],
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "emissions_2025",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "method": "squarify",
+          "ratio": 1.4,
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ],
+          "paddingInner": 3,
+          "round": true
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.children"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "shade",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "share"
+      },
+      "range": [
+        "#bfd3bb",
+        "#176e63"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "stroke": {
+            "value": "#f7f6ef"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "shade",
+            "field": "share"
+          },
+          "tooltip": {
+            "signal": "{'Sector':datum.sector,'2025 emissions (Mt CO₂eq)':format(datum.emissions_2025,',.1f'),'Global share':format(datum.share,'.1%')}"
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.8
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "(datum.x0+datum.x1)/2"
+          },
+          "y": {
+            "signal": "(datum.y0+datum.y1)/2"
+          },
+          "text": {
+            "signal": "datum.sector == 'Waste & other' ? ['Waste &', 'other'] : datum.sector"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Segoe UI"
+          },
+          "fontSize": {
+            "signal": "width < 500 ? 10 : 13"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "signal": "datum.share > 0.22 ? '#ffffff' : '#173f35'"
+          },
+          "limit": {
+            "signal": "max(0,datum.x1-datum.x0-12)"
+          },
+          "lineHeight": {
+            "value": 15
+          }
+        }
+      }
+    }
+  ]
+}

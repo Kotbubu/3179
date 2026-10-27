@@ -131,8 +131,8 @@
         "Change from 1990 sector share",
         "Percentage points"
       ],
-      "titleFont": "Segoe UI",
-      "labelFont": "Segoe UI",
+      "titleFont": "Manrope",
+      "labelFont": "Manrope",
       "titleFontSize": 11,
       "labelFontSize": 10,
       "gradientLength": 240,
@@ -222,7 +222,7 @@
             "value": 13
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 11
@@ -256,7 +256,7 @@
             "value": "middle"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 9
@@ -284,7 +284,7 @@
             "value": "center"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 12
@@ -315,7 +315,7 @@
             "value": "center"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 10

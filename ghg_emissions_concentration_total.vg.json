@@ -3,7 +3,13 @@
   "width": "container",
   "height": 280,
   "projection": {
-    "type": "equalEarth"
+    "type": "equalEarth",
+    "scale": {
+      "expr": "max(1,min((width-130)/5.45,(height-50)/2.65))"
+    },
+    "translate": {
+      "expr": "[width/2,height/2]"
+    }
   },
   "layer": [
     {
@@ -65,17 +71,7 @@
               1700
             ]
           },
-          "legend": {
-            "orient": "bottom",
-            "values": [
-              100,
-              1000,
-              5000,
-              15000
-            ],
-            "labelFontSize": 10,
-            "titleFontSize": 11
-          }
+          "legend": null
         },
         "tooltip": [
           {
@@ -101,31 +97,165 @@
           "filter": "datum.year == Year_selection"
         }
       ]
+    },
+    {
+      "data": {
+        "url": "data/continent_annotation_boundaries.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fillOpacity": 0,
+        "stroke": "#24332b",
+        "strokeWidth": 0.65,
+        "strokeOpacity": 0.65
+      },
+      "encoding": {
+        "tooltip": null
+      },
+      "name": "continent_outlines"
+    },
+    {
+      "data": {
+        "url": "data/continent_annotation_leaders.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "stroke": "#24332b",
+        "strokeWidth": 0.7,
+        "strokeOpacity": 0.8
+      },
+      "encoding": {
+        "tooltip": null,
+        "opacity": {
+          "condition": {
+            "test": "width >= 600",
+            "value": 1
+          },
+          "value": 0
+        }
+      },
+      "name": "continent_leaders"
+    },
+    {
+      "data": {
+        "url": "data/continent_map_annotations.json"
+      },
+      "transform": [
+        {
+          "filter": "datum.year == Year_selection"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Manrope",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "lineHeight": 14,
+        "lineBreak": "\n",
+        "align": "center",
+        "baseline": "middle",
+        "color": "#173f35",
+        "stroke": "#f7f6ef",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.95
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "total_label"
+        },
+        "tooltip": null,
+        "opacity": {
+          "condition": {
+            "test": "width >= 600",
+            "value": 1
+          },
+          "value": 0
+        }
+      },
+      "name": "continent_label_halo"
+    },
+    {
+      "data": {
+        "url": "data/continent_map_annotations.json"
+      },
+      "transform": [
+        {
+          "filter": "datum.year == Year_selection"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Manrope",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "lineHeight": 14,
+        "lineBreak": "\n",
+        "align": "center",
+        "baseline": "middle",
+        "color": "#173f35"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "total_label"
+        },
+        "tooltip": null,
+        "opacity": {
+          "condition": {
+            "test": "width >= 600",
+            "value": 1
+          },
+          "value": 0
+        }
+      },
+      "name": "continent_labels"
     }
   ],
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Segoe UI",
-    "legend": {
+    "font": "Manrope",
+    "legend": null,
+    "axis": {
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
       "labelFontSize": 12,
       "titleFontSize": 13,
+      "titleFontWeight": 400,
       "labelColor": "#526358",
-      "titleColor": "#253d35",
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
-    },
-    "axis": {
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "titleColor": "#526358"
     },
     "text": {
-      "font": "Segoe UI"
+      "font": "Manrope"
     }
   },
   "autosize": {
-    "type": "fit-x",
+    "type": "none",
     "contains": "padding",
     "resize": true
   },
@@ -135,5 +265,11 @@
       "value": 2025
     }
   ],
-  "background": "transparent"
+  "background": "transparent",
+  "padding": {
+    "left": 8,
+    "right": 8,
+    "top": 8,
+    "bottom": 8
+  }
 }

@@ -45,7 +45,14 @@
         "format": "d",
         "grid": false,
         "labelAngle": 0,
-        "labelOverlap": true
+        "labelOverlap": true,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "y": {
@@ -73,7 +80,14 @@
           35,
           37
         ],
-        "format": "d"
+        "format": "d",
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "color": {
@@ -117,6 +131,13 @@
       "encoding": {
         "order": {
           "field": "year"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -181,6 +202,13 @@
             ]
           },
           "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -276,6 +304,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -300,6 +335,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -327,6 +369,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -351,6 +400,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -378,6 +434,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -402,6 +465,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -429,6 +499,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -453,6 +530,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -480,6 +564,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -504,6 +595,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -531,6 +629,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -555,6 +660,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -582,6 +694,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -606,6 +725,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -633,6 +759,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -657,6 +790,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -684,6 +824,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -708,6 +855,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -735,6 +889,13 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     },
@@ -759,20 +920,27 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
         }
       }
     }
   ],
   "config": {
-    "font": "Segoe UI",
+    "font": "Manrope",
     "view": {
       "stroke": null
     },
     "axis": {
-      "labelFontSize": 11,
-      "titleFontSize": 12,
-      "labelColor": "#6a736c",
-      "titleColor": "#46584d",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
       "gridColor": "#dedfd4",
       "domainColor": "#bbc8b8",
       "titlePadding": 12,
@@ -781,21 +949,32 @@
       "gridOpacity": 0.65,
       "labelPadding": 8,
       "titleFontWeight": 400,
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "labelFont": "Manrope",
+      "titleFont": "Manrope"
     },
     "legend": {
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "labelColor": "#526358",
+      "titleColor": "#173f35"
     },
     "text": {
-      "font": "Segoe UI"
+      "font": "Manrope"
     }
   },
   "padding": {
     "left": 4,
     "right": 12,
-    "top": 20,
+    "top": 14,
     "bottom": 8
-  }
+  },
+  "params": [
+    {
+      "name": "legend_country",
+      "value": ""
+    }
+  ]
 }

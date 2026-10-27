@@ -1,0 +1,364 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Annual global greenhouse gas emissions by eight sectors, 1970–2025. Centred band thickness encodes annual emissions; vertical position is not a magnitude.",
+  "width": 800,
+  "height": 300,
+  "padding": {
+    "left": 4,
+    "right": 4,
+    "top": 12,
+    "bottom": 40
+  },
+  "autosize": {
+    "type": "none",
+    "resize": true
+  },
+  "background": "transparent",
+  "signals": [
+    {
+      "name": "width",
+      "init": "max(240,(containerSize()[0] || 808)-8)",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "max(240,containerSize()[0]-8)"
+        }
+      ]
+    },
+    {
+      "name": "legend_sector",
+      "value": ""
+    },
+    {
+      "name": "hover_year",
+      "value": null,
+      "on": [
+        {
+          "events": "@stream_cells:pointerover",
+          "update": "datum.year"
+        },
+        {
+          "events": "@stream_cells:pointerout",
+          "update": "null"
+        }
+      ]
+    },
+    {
+      "name": "plot_width",
+      "update": "width"
+    }
+  ],
+  "data": [
+    {
+      "name": "stacked",
+      "url": "data/ghg_sector_history_1970_2025.json",
+      "transform": [
+        {
+          "type": "joinaggregate",
+          "groupby": [
+            "year"
+          ],
+          "fields": [
+            "emissions_mt"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "annual_total_mt"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.emissions_mt/datum.annual_total_mt",
+          "as": "share"
+        },
+        {
+          "type": "stack",
+          "groupby": [
+            "year"
+          ],
+          "field": "emissions_mt",
+          "sort": {
+            "field": "sector_order",
+            "order": "ascending"
+          },
+          "offset": "center",
+          "as": [
+            "band_start",
+            "band_end"
+          ]
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": [
+              "sector_order",
+              "year"
+            ],
+            "order": [
+              "ascending",
+              "ascending"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "initial_values",
+      "source": "stacked",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.year === 1970"
+        }
+      ]
+    },
+    {
+      "name": "endpoint_changes",
+      "source": "stacked",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.year === 2025"
+        },
+        {
+          "type": "lookup",
+          "from": "initial_values",
+          "key": "sector",
+          "fields": [
+            "sector"
+          ],
+          "values": [
+            "emissions_mt"
+          ],
+          "as": [
+            "initial_mt"
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.emissions_mt-datum.initial_mt",
+          "as": "change_mt"
+        }
+      ]
+    },
+    {
+      "name": "tooltip_rows",
+      "source": "stacked",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "endpoint_changes",
+          "key": "sector",
+          "fields": [
+            "sector"
+          ],
+          "values": [
+            "initial_mt",
+            "emissions_mt",
+            "change_mt"
+          ],
+          "as": [
+            "initial_mt",
+            "final_mt",
+            "change_mt"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [
+        1970,
+        2025
+      ],
+      "range": {
+        "signal": "[0,plot_width]"
+      },
+      "nice": false,
+      "zero": false
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "stacked",
+        "fields": [
+          "band_start",
+          "band_end"
+        ]
+      },
+      "range": "height",
+      "nice": false,
+      "zero": false
+    },
+    {
+      "name": "sector_colour",
+      "type": "ordinal",
+      "domain": [
+        "Power & heat",
+        "Other energy",
+        "Manufacturing",
+        "Transport",
+        "Buildings",
+        "Industry processes",
+        "Agriculture",
+        "Waste & other"
+      ],
+      "range": [
+        "#267f78",
+        "#9ebdb1",
+        "#6e8394",
+        "#bd8548",
+        "#b8a86c",
+        "#4c79a4",
+        "#83954e",
+        "#9a859e"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "values": {
+        "signal": "plot_width < 450 ? [1970,1990,2010,2025] : [1970,1980,1990,2000,2010,2020,2025]"
+      },
+      "format": "d",
+      "grid": false,
+      "title": "Year",
+      "domain": false,
+      "ticks": false,
+      "labelFont": "Manrope",
+      "labelFontSize": 12,
+      "labelColor": "#526358",
+      "labelPadding": 8,
+      "titleFont": "Manrope",
+      "titleFontSize": 13,
+      "titleFontWeight": 400,
+      "titleColor": "#526358",
+      "labelFlush": true,
+      "labelFlushOffset": 0
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "sector_series",
+          "data": "stacked",
+          "groupby": "sector"
+        }
+      },
+      "marks": [
+        {
+          "name": "sector_band",
+          "type": "area",
+          "from": {
+            "data": "sector_series"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "scale": "x",
+                "field": "year"
+              },
+              "y": {
+                "scale": "y",
+                "field": "band_end"
+              },
+              "y2": {
+                "scale": "y",
+                "field": "band_start"
+              },
+              "fill": {
+                "scale": "sector_colour",
+                "field": "sector"
+              },
+              "fillOpacity": {
+                "signal": "legend_sector === '' || datum.sector === legend_sector ? 0.95 : 0.14"
+              },
+              "stroke": {
+                "value": "#f7f6ef"
+              },
+              "strokeWidth": {
+                "value": 0.6
+              },
+              "interpolate": {
+                "value": "linear"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "stream_cells",
+      "type": "rect",
+      "from": {
+        "data": "tooltip_rows"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "max(0,scale('x',datum.year-0.5))"
+          },
+          "x2": {
+            "signal": "min(plot_width,scale('x',datum.year+0.5))"
+          },
+          "y": {
+            "scale": "y",
+            "field": "band_end"
+          },
+          "y2": {
+            "scale": "y",
+            "field": "band_start"
+          },
+          "fill": {
+            "value": "#000000"
+          },
+          "fillOpacity": {
+            "value": 0
+          },
+          "tooltip": {
+            "signal": "{'Year':datum.year,'Sector':datum.sector,'Annual emissions (Mt CO₂eq)':format(datum.emissions_mt,',.1f'),'Share of annual global emissions':format(datum.share,'.1%'),'1970 emissions (Mt CO₂eq)':format(datum.initial_mt,',.1f'),'2025 emissions (Mt CO₂eq)':format(datum.final_mt,',.1f'),'1970–2025 change (Mt CO₂eq)':format(datum.change_mt,'+,.1f')}"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "hover_year === null ? 0 : scale('x',hover_year)"
+          },
+          "y": {
+            "value": 0
+          },
+          "y2": {
+            "signal": "height"
+          },
+          "stroke": {
+            "value": "#173f35"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "opacity": {
+            "signal": "hover_year === null ? 0 : 0.3"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Manrope"
+  }
+}

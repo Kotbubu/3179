@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_income_skyline_2025.json"
+  },
+  "params": [
+    {
+      "name": "skyline_group",
+      "value": ""
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "start",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ],
+        "nice": false
+      },
+      "axis": {
+        "format": ".0%",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "grid": false
+      },
+      "title": "Share of covered population"
+    },
+    "y": {
+      "field": "per_person",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          16
+        ],
+        "nice": false
+      },
+      "title": "Annual emissions per person (tonnes CO₂eq)"
+    },
+    "color": {
+      "field": "income_group",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Low income",
+          "Lower middle income",
+          "Upper middle income",
+          "High income"
+        ],
+        "range": [
+          "#7d9252",
+          "#36958b",
+          "#5487b0",
+          "#8770a2"
+        ]
+      },
+      "legend": null
+    },
+    "opacity": {
+      "condition": {
+        "test": "skyline_group === '' || datum.income_group === skyline_group",
+        "value": 1
+      },
+      "value": 0.18
+    },
+    "tooltip": [
+      {
+        "field": "income_group",
+        "title": "Income group"
+      },
+      {
+        "field": "year",
+        "title": "Year"
+      },
+      {
+        "field": "countries",
+        "title": "Countries"
+      },
+      {
+        "field": "population_share",
+        "title": "Population share",
+        "format": ".1%"
+      },
+      {
+        "field": "emissions_share",
+        "title": "Emissions share",
+        "format": ".1%"
+      },
+      {
+        "field": "per_person",
+        "title": "Tonnes CO₂eq per person",
+        "format": ".1f"
+      },
+      {
+        "field": "emissions_mt",
+        "title": "Emissions (Mt CO₂eq)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#f7f6ef",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x2": {
+          "field": "end"
+        },
+        "y2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "bottom",
+        "dy": -8,
+        "font": "Manrope",
+        "fontSize": 11,
+        "lineHeight": 13,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "x": {
+          "field": "midpoint",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label_lines"
+        },
+        "color": {
+          "value": "#173f35"
+        },
+        "opacity": {
+          "condition": {
+            "test": "width >= 500",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Manrope",
+    "axis": {
+      "domain": false,
+      "ticks": false,
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 400,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
+      "gridColor": "#e2e6dc",
+      "labelPadding": 7
+    }
+  }
+}

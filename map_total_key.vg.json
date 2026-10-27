@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 240,
+  "height": 120,
+  "padding": 0,
+  "background": "transparent",
+  "scales": [
+    {
+      "name": "size",
+      "type": "linear",
+      "domain": [
+        0,
+        15980.974040899
+      ],
+      "range": [
+        0,
+        1700
+      ],
+      "zero": true
+    }
+  ],
+  "data": [
+    {
+      "name": "key",
+      "values": [
+        {
+          "value": 100,
+          "x": 23,
+          "y": 39,
+          "label": "100"
+        },
+        {
+          "value": 1000,
+          "x": 145,
+          "y": 39,
+          "label": "1,000"
+        },
+        {
+          "value": 5000,
+          "x": 23,
+          "y": 96,
+          "label": "5,000"
+        },
+        {
+          "value": 15000,
+          "x": 145,
+          "y": 96,
+          "label": "15,000"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 0
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "text": {
+            "value": "Emissions (Mt CO₂eq)"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#173f35"
+          }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {
+        "data": "key"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "field": "x"
+          },
+          "y": {
+            "field": "y"
+          },
+          "size": {
+            "scale": "size",
+            "field": "value"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "fill": {
+            "value": "#227c72"
+          },
+          "stroke": {
+            "value": "#124e48"
+          },
+          "opacity": {
+            "value": 0.65
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "key"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x + 29"
+          },
+          "y": {
+            "field": "y"
+          },
+          "text": {
+            "field": "label"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#526358"
+          }
+        }
+      }
+    }
+  ]
+}

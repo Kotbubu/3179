@@ -1,0 +1,304 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Accounting Sankey for 2025 emissions across ten selected countries, income groups and sectors. Band widths encode emissions, not causal flows.",
+  "width": 800,
+  "height": 540,
+  "padding": {
+    "top": 34,
+    "bottom": 8,
+    "left": 4,
+    "right": 4
+  },
+  "autosize": "pad",
+  "background": "transparent",
+  "signals": [
+    {
+      "name": "width",
+      "init": "max(600,(containerSize()[0] || 808)-8)",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "max(600,containerSize()[0]-8)"
+        }
+      ]
+    },
+    {
+      "name": "focus_node",
+      "value": "",
+      "on": [
+        {
+          "events": "@sankey_nodes:click",
+          "update": "focus_node === datum.id ? '' : datum.id"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "nodes",
+      "url": "data/ghg_income_country_sector_sankey.json",
+      "format": {
+        "type": "json",
+        "property": "nodes"
+      }
+    },
+    {
+      "name": "links",
+      "url": "data/ghg_income_country_sector_sankey.json",
+      "format": {
+        "type": "json",
+        "property": "links"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "name": "sankey_links",
+      "from": {
+        "data": "links"
+      },
+      "encode": {
+        "update": {
+          "path": {
+            "signal": "'M'+((datum.source_stage === 0 ? 120 : width/2) + 12)+','+datum.sy0+'C'+((((datum.source_stage === 0 ? 120 : width/2) + 12)+((datum.target_stage === 1 ? width/2 : width-142)))/2)+','+datum.sy0+' '+((((datum.source_stage === 0 ? 120 : width/2) + 12)+((datum.target_stage === 1 ? width/2 : width-142)))/2)+','+datum.ty0+' '+((datum.target_stage === 1 ? width/2 : width-142))+','+datum.ty0+'L'+((datum.target_stage === 1 ? width/2 : width-142))+','+datum.ty1+'C'+((((datum.source_stage === 0 ? 120 : width/2) + 12)+((datum.target_stage === 1 ? width/2 : width-142)))/2)+','+datum.ty1+' '+((((datum.source_stage === 0 ? 120 : width/2) + 12)+((datum.target_stage === 1 ? width/2 : width-142)))/2)+','+datum.sy1+' '+((datum.source_stage === 0 ? 120 : width/2) + 12)+','+datum.sy1+'Z'"
+          },
+          "fill": {
+            "field": "colour"
+          },
+          "fillOpacity": {
+            "signal": "(focus_node === '' || datum.source === focus_node || datum.target === focus_node || datum.country_id === focus_node || datum.income_id === focus_node || datum.sector_id === focus_node) ? 0.48 : 0.06"
+          },
+          "tooltip": {
+            "signal": "{'Country':datum.country,'Income group':datum.income,'Sector':datum.sector,'2025 emissions (Mt CO₂eq)':format(datum.value,',.1f')}"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "sankey_nodes",
+      "from": {
+        "data": "nodes"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.stage === 0 ? 120 : datum.stage === 1 ? width/2 : width-142"
+          },
+          "width": {
+            "value": 12
+          },
+          "y": {
+            "field": "y0"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "field": "colour"
+          },
+          "stroke": {
+            "signal": "focus_node === datum.id ? '#173f35' : '#f7f6ef'"
+          },
+          "strokeWidth": {
+            "signal": "focus_node === datum.id ? 2 : 0.5"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "signal": "{'Group':datum.label,'2025 emissions (Mt CO₂eq)':format(datum.value,',.1f')}"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.stage === 0 ? 112 : datum.stage === 1 ? width/2-7 : width-122"
+          },
+          "y": {
+            "signal": "(datum.y0+datum.y1)/2"
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "signal": "datum.stage === 2 ? 'left' : 'right'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "signal": "datum.key === 'AUS' ? 700 : 400"
+          },
+          "fill": {
+            "value": "#173f35"
+          },
+          "stroke": {
+            "value": "#f7f6ef"
+          },
+          "strokeWidth": {
+            "value": 3
+          },
+          "strokeOpacity": {
+            "value": 0.9
+          },
+          "limit": {
+            "value": 116
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "nodes"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.stage === 0 ? 112 : datum.stage === 1 ? width/2-7 : width-122"
+          },
+          "y": {
+            "signal": "(datum.y0+datum.y1)/2"
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "signal": "datum.stage === 2 ? 'left' : 'right'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "signal": "datum.key === 'AUS' ? 700 : 400"
+          },
+          "fill": {
+            "value": "#173f35"
+          },
+          "limit": {
+            "value": 116
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "120"
+          },
+          "y": {
+            "value": -16
+          },
+          "align": {
+            "value": "center"
+          },
+          "text": {
+            "value": "Income group"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#173f35"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "width/2"
+          },
+          "y": {
+            "value": -16
+          },
+          "align": {
+            "value": "center"
+          },
+          "text": {
+            "value": "Country"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#173f35"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "width-142"
+          },
+          "y": {
+            "value": -16
+          },
+          "align": {
+            "value": "center"
+          },
+          "text": {
+            "value": "Emissions sector"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#173f35"
+          }
+        }
+      }
+    }
+  ]
+}

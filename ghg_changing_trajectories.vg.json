@@ -58,7 +58,14 @@
           2025
         ],
         "grid": false,
-        "labelOverlap": true
+        "labelOverlap": true,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "y": {
@@ -70,7 +77,14 @@
       },
       "axis": {
         "format": ",.0f",
-        "tickCount": 6
+        "tickCount": 6,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "color": {
@@ -103,15 +117,15 @@
     }
   },
   "config": {
-    "font": "Segoe UI",
+    "font": "Manrope",
     "view": {
       "stroke": null
     },
     "axis": {
-      "labelFontSize": 11,
-      "titleFontSize": 12,
-      "labelColor": "#6a736c",
-      "titleColor": "#46584d",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
       "gridColor": "#dedfd4",
       "domainColor": "#bbc8b8",
       "titlePadding": 12,
@@ -120,18 +134,21 @@
       "gridOpacity": 0.65,
       "labelPadding": 8,
       "titleFontWeight": 400,
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "labelFont": "Manrope",
+      "titleFont": "Manrope"
     },
     "legend": {
       "labelFontSize": 12,
       "labelColor": "#526358",
       "padding": 14,
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "titleColor": "#173f35"
     },
     "text": {
-      "font": "Segoe UI"
+      "font": "Manrope"
     }
   },
   "layer": [
@@ -160,396 +177,655 @@
             "title": "Emissions (Mt CO₂eq)",
             "format": ",.1f"
           }
-        ]
+        ],
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
       }
     },
     {
-      "data": {
-        "values": [
-          {
-            "year": 2004
-          }
-        ]
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CHN' && datum.year == 2023"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
       },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'CHN' && datum.year == 2023"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'USA' && datum.year == 2020"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'USA' && datum.year == 2020"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IND' && datum.year == 2021"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'IND' && datum.year == 2021"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'RUS' && datum.year == 1988"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'RUS' && datum.year == 1988"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'JPN' && datum.year == 1980"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'JPN' && datum.year == 1980"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'AUS' && datum.year == 1998"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.iso_code == 'AUS' && datum.year == 1998"
+        },
+        {
+          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
+          "as": "country_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": 13,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "clip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "country_label"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || !datum.country || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "name": "china_us_crossing_marker",
+      "transform": [
+        {
+          "filter": "datum.iso_code === 'CHN' && datum.year === 2004"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 70,
+        "stroke": "#f7f6ef",
+        "strokeWidth": 1.25
+      },
+      "encoding": {
+        "color": {
+          "value": "#176e63"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || legend_country === 'China' || legend_country === 'United States'",
+            "value": 1
+          },
+          "value": 0.12
+        },
+        "tooltip": {
+          "value": "2004 is the first annual observation with China above the US; the dot marks China’s 2004 value."
+        }
+      }
+    },
+    {
+      "name": "china_us_crossing_leader",
+      "transform": [
+        {
+          "filter": "datum.iso_code === 'CHN' && datum.year === 2004"
+        }
+      ],
       "mark": {
         "type": "rule",
+        "strokeWidth": 1,
         "strokeDash": [
-          4,
-          4
-        ],
-        "strokeWidth": 1.2
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "quantitative"
-        },
-        "y": {
-          "value": 0
-        },
-        "y2": {
-          "value": 300
-        },
-        "color": {
-          "value": "#708074"
-        },
-        "opacity": {
-          "value": 0.65
-        },
-        "tooltip": {
-          "value": "2004: China first exceeds United States emissions."
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "year": 2004,
-            "label": [
-              "2004: China’s annual emissions",
-              "first exceed US emissions."
-            ]
-          }
+          3,
+          3
         ]
       },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "fontSize": 11,
-        "fontWeight": 500,
-        "lineBreak": "\n",
-        "dx": 10,
-        "font": "Segoe UI"
-      },
       "encoding": {
-        "x": {
-          "field": "year",
-          "type": "quantitative"
-        },
-        "y": {
-          "value": 20
-        },
-        "text": {
-          "field": "label"
-        },
         "color": {
-          "value": "#253d35"
+          "value": "#176e63"
         },
         "opacity": {
-          "value": 1
+          "condition": {
+            "test": "legend_country === '' || legend_country === 'China' || legend_country === 'United States'",
+            "value": 1
+          },
+          "value": 0.12
         },
         "tooltip": {
-          "value": "China first exceeds United States emissions in 2004 in this dataset."
+          "value": "2004 is the first annual observation with China above the US; the dot marks China’s 2004 value."
+        },
+        "y2": {
+          "datum": 10800
         }
       }
     },
     {
+      "name": "china_us_crossing_label_halo",
       "transform": [
         {
-          "filter": "datum.iso_code == 'CHN' && datum.year == 2023"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
+          "filter": "datum.iso_code === 'CHN' && datum.year === 2004"
         }
       ],
       "mark": {
         "type": "text",
-        "align": "center",
-        "dy": -12,
+        "font": "Manrope",
         "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
+        "fontWeight": 600,
+        "align": {
+          "expr": "width < 500 ? 'right' : 'left'"
+        },
+        "baseline": "bottom",
+        "dx": {
+          "expr": "width < 500 ? -8 : 8"
+        },
+        "dy": -4,
         "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
+        "strokeWidth": 3
       },
       "encoding": {
+        "color": {
+          "value": "#173f35"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || legend_country === 'China' || legend_country === 'United States'",
+            "value": 1
+          },
+          "value": 0.12
+        },
+        "tooltip": {
+          "value": "2004 is the first annual observation with China above the US; the dot marks China’s 2004 value."
+        },
+        "y": {
+          "datum": 10800
+        },
         "text": {
-          "field": "country_label"
+          "value": "2004 · China exceeds US"
         }
       }
     },
     {
+      "name": "china_us_crossing_label",
       "transform": [
         {
-          "filter": "datum.iso_code == 'CHN' && datum.year == 2023"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
+          "filter": "datum.iso_code === 'CHN' && datum.year === 2004"
         }
       ],
       "mark": {
         "type": "text",
-        "align": "center",
-        "dy": -12,
+        "font": "Manrope",
         "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
+        "fontWeight": 600,
+        "align": {
+          "expr": "width < 500 ? 'right' : 'left'"
+        },
+        "baseline": "bottom",
+        "dx": {
+          "expr": "width < 500 ? -8 : 8"
+        },
+        "dy": -4
       },
       "encoding": {
+        "color": {
+          "value": "#173f35"
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || legend_country === 'China' || legend_country === 'United States'",
+            "value": 1
+          },
+          "value": 0.12
+        },
+        "tooltip": {
+          "value": "2004 is the first annual observation with China above the US; the dot marks China’s 2004 value."
+        },
+        "y": {
+          "datum": 10800
+        },
         "text": {
-          "field": "country_label"
+          "value": "2004 · China exceeds US"
         }
       }
     },
     {
+      "name": "national_peak_markers",
       "transform": [
         {
-          "filter": "datum.iso_code == 'USA' && datum.year == 2020"
+          "filter": "datum.iso_code !== 'CHN'"
         },
         {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
+          "window": [
+            {
+              "op": "row_number",
+              "as": "peak_order"
+            }
+          ],
+          "sort": [
+            {
+              "field": "emissions_mt",
+              "order": "descending"
+            },
+            {
+              "field": "year",
+              "order": "ascending"
+            }
+          ],
+          "groupby": [
+            "country"
+          ]
+        },
+        {
+          "filter": "datum.peak_order === 1"
         }
       ],
       "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -12,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
-        "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
+        "type": "point",
+        "shape": "circle",
+        "filled": true,
+        "size": 85,
+        "strokeWidth": 2
       },
       "encoding": {
-        "text": {
-          "field": "country_label"
-        }
+        "fill": {
+          "value": "#f7f6ef"
+        },
+        "stroke": {
+          "field": "country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "United States",
+              "India",
+              "Russian Federation",
+              "Japan",
+              "Australia"
+            ],
+            "range": [
+              "#176e63",
+              "#b56b2a",
+              "#548faf",
+              "#8c719d",
+              "#66756c",
+              "#b64d54"
+            ]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "legend_country === '' || datum.country === legend_country",
+            "value": 1
+          },
+          "value": 0.12
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Highest observed year (1970–2025)",
+            "format": "d"
+          },
+          {
+            "field": "emissions_mt",
+            "type": "quantitative",
+            "title": "Peak annual emissions (Mt CO₂eq)",
+            "format": ",.1f"
+          }
+        ]
       }
-    },
+    }
+  ],
+  "params": [
     {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'USA' && datum.year == 2020"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -12,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'IND' && datum.year == 2021"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -12,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
-        "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'IND' && datum.year == 2021"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -12,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'RUS' && datum.year == 1988"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": 13,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
-        "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'RUS' && datum.year == 1988"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": 13,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'JPN' && datum.year == 1980"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -10,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
-        "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'JPN' && datum.year == 1980"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -10,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'AUS' && datum.year == 1998"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": 13,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false,
-        "stroke": "#f7f6ef",
-        "strokeWidth": 4,
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.iso_code == 'AUS' && datum.year == 1998"
-        },
-        {
-          "calculate": "datum.country == 'Russian Federation' ? 'Russia' : datum.country",
-          "as": "country_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": 13,
-        "fontSize": 11,
-        "fontWeight": 500,
-        "clip": false
-      },
-      "encoding": {
-        "text": {
-          "field": "country_label"
-        }
-      }
+      "name": "legend_country",
+      "value": ""
     }
   ]
 }

@@ -1,0 +1,394 @@
+[
+  {
+    "year": 1970,
+    "total_change": 0.0,
+    "person_change": 0.0,
+    "population_component": 0.0,
+    "person_component": 0.0
+  },
+  {
+    "year": 1971,
+    "total_change": 0.019721412416895623,
+    "person_change": -0.014172087416084556,
+    "population_component": 10.759195984465872,
+    "person_component": -4.54348356566585
+  },
+  {
+    "year": 1972,
+    "total_change": 0.05800412070446992,
+    "person_change": 0.004208661884405052,
+    "population_component": 16.919498629218218,
+    "person_component": 1.3619979382117964
+  },
+  {
+    "year": 1973,
+    "total_change": 0.08104559626186814,
+    "person_change": 0.010511006909355913,
+    "population_component": 22.115178592262566,
+    "person_component": 3.4284340316674244
+  },
+  {
+    "year": 1974,
+    "total_change": 0.12669009462734815,
+    "person_change": 0.026853677293903866,
+    "population_component": 31.054584597446084,
+    "person_component": 8.875070432713883
+  },
+  {
+    "year": 1975,
+    "total_change": 0.15616377256837133,
+    "person_change": 0.04082201853542222,
+    "population_component": 35.64003432544494,
+    "person_component": 13.579011450825096
+  },
+  {
+    "year": 1976,
+    "total_change": 0.16637305373165345,
+    "person_change": 0.03953736072271008,
+    "population_component": 39.21533695120476,
+    "person_component": 13.22142743325527
+  },
+  {
+    "year": 1977,
+    "total_change": 0.187135233476311,
+    "person_change": 0.046188018960556576,
+    "population_component": 43.442538506002876,
+    "person_component": 15.537962997897152
+  },
+  {
+    "year": 1978,
+    "total_change": 0.15825871039717643,
+    "person_change": 0.008938688601301426,
+    "population_component": 46.853587905767675,
+    "person_component": 3.0257316279722812
+  },
+  {
+    "year": 1979,
+    "total_change": 0.1711064150266277,
+    "person_change": 0.009165490749485583,
+    "population_component": 50.80808598939156,
+    "person_component": 3.120519443868449
+  },
+  {
+    "year": 1980,
+    "total_change": 0.19384468573897906,
+    "person_change": 0.01629563602895523,
+    "population_component": 55.510533795229136,
+    "person_component": 5.584624857500841
+  },
+  {
+    "year": 1981,
+    "total_change": 0.20422945115901792,
+    "person_change": 0.009249838550412948,
+    "population_component": 61.171250491133556,
+    "person_component": 3.196935165096455
+  },
+  {
+    "year": 1982,
+    "total_change": 0.23111537759535672,
+    "person_change": 0.014048311225780763,
+    "population_component": 67.94039641168565,
+    "person_component": 4.901583276564367
+  },
+  {
+    "year": 1983,
+    "total_change": 0.1918725813801312,
+    "person_change": -0.03161870334897143,
+    "population_component": 71.58900575713797,
+    "person_component": -11.115406721707899
+  },
+  {
+    "year": 1984,
+    "total_change": 0.23764871715652558,
+    "person_change": -0.006426341987522788,
+    "population_component": 77.17533491595456,
+    "person_component": -2.2742045447745873
+  },
+  {
+    "year": 1985,
+    "total_change": 0.278570931157077,
+    "person_change": 0.012843338539392901,
+    "population_component": 83.21991225431873,
+    "person_component": 4.578910654851283
+  },
+  {
+    "year": 1986,
+    "total_change": 0.2951781965958944,
+    "person_change": 0.0112648122200385,
+    "population_component": 88.98424671759174,
+    "person_component": 4.04878476894831
+  },
+  {
+    "year": 1987,
+    "total_change": 0.3290436492050597,
+    "person_change": 0.022041176696750098,
+    "population_component": 95.71640466334262,
+    "person_component": 7.990198771357381
+  },
+  {
+    "year": 1988,
+    "total_change": 0.36293030049937336,
+    "person_change": 0.031091227279481437,
+    "population_component": 103.01080054428904,
+    "person_component": 11.376056151640974
+  },
+  {
+    "year": 1989,
+    "total_change": 0.4303595467883401,
+    "person_change": 0.0639386376358102,
+    "population_component": 112.01684857688157,
+    "person_component": 23.622076413588434
+  },
+  {
+    "year": 1990,
+    "total_change": 0.46305272056201363,
+    "person_change": 0.07226856874845033,
+    "population_component": 119.01516655531434,
+    "person_component": 26.927856434795675
+  },
+  {
+    "year": 1991,
+    "total_change": 0.4706842518856664,
+    "person_change": 0.0642102306622152,
+    "population_component": 124.24593608265232,
+    "person_component": 24.102361084587713
+  },
+  {
+    "year": 1992,
+    "total_change": 0.47892779023103804,
+    "person_change": 0.058260549088621216,
+    "population_component": 128.93455890062572,
+    "person_component": 22.011902261414328
+  },
+  {
+    "year": 1993,
+    "total_change": 0.4894659175413698,
+    "person_change": 0.05636252068578873,
+    "population_component": 132.8621229227891,
+    "person_component": 21.405701202970885
+  },
+  {
+    "year": 1994,
+    "total_change": 0.4957666059256398,
+    "person_change": 0.05066336590040632,
+    "population_component": 136.90346522882786,
+    "person_component": 19.350183553362157
+  },
+  {
+    "year": 1995,
+    "total_change": 0.5277002151816357,
+    "person_change": 0.061209209328709546,
+    "population_component": 142.7865304053652,
+    "person_component": 23.531820003344784
+  },
+  {
+    "year": 1996,
+    "total_change": 0.5666951681516699,
+    "person_change": 0.0751663638867337,
+    "population_component": 149.50273072553094,
+    "person_component": 29.10588613684906
+  },
+  {
+    "year": 1997,
+    "total_change": 0.6040159604855668,
+    "person_change": 0.08893162499716989,
+    "population_component": 155.71299515135533,
+    "person_component": 34.658233205854685
+  },
+  {
+    "year": 1998,
+    "total_change": 0.6724362468937606,
+    "person_change": 0.1241201512190011,
+    "population_component": 163.27520681362313,
+    "person_component": 48.66044172481687
+  },
+  {
+    "year": 1999,
+    "total_change": 0.6922449190097264,
+    "person_change": 0.12505901480303727,
+    "population_component": 168.82782383563097,
+    "person_component": 49.35103926920906
+  },
+  {
+    "year": 2000,
+    "total_change": 0.7235085490155846,
+    "person_change": 0.13280496704616063,
+    "population_component": 175.26229939331412,
+    "person_component": 52.77010407548585
+  },
+  {
+    "year": 2001,
+    "total_change": 0.7575863908721998,
+    "person_change": 0.1404655766457079,
+    "population_component": 182.52365761470247,
+    "person_component": 56.24925775843752
+  },
+  {
+    "year": 2002,
+    "total_change": 0.7828221513593101,
+    "person_change": 0.14375565316048866,
+    "population_component": 188.76044046152444,
+    "person_component": 57.9661765300256
+  },
+  {
+    "year": 2003,
+    "total_change": 0.7558031736069115,
+    "person_change": 0.11354004124194961,
+    "population_component": 192.10582637726787,
+    "person_component": 46.105062024022196
+  },
+  {
+    "year": 2004,
+    "total_change": 0.817703070377575,
+    "person_change": 0.1405372683777122,
+    "population_component": 200.2770713398204,
+    "person_component": 57.44316806262965
+  },
+  {
+    "year": 2005,
+    "total_change": 0.8292172102693223,
+    "person_change": 0.1338750326284135,
+    "population_component": 206.21738001282174,
+    "person_component": 55.13183792341826
+  },
+  {
+    "year": 2006,
+    "total_change": 0.8457995563803247,
+    "person_change": 0.12881782951713472,
+    "population_component": 213.08144229003594,
+    "person_component": 53.49413025388401
+  },
+  {
+    "year": 2007,
+    "total_change": 0.873614300490495,
+    "person_change": 0.12510655591092545,
+    "population_component": 222.79541853774907,
+    "person_component": 52.54668891435089
+  },
+  {
+    "year": 2008,
+    "total_change": 0.8711752955202077,
+    "person_change": 0.10134925185044552,
+    "population_component": 231.46678528482317,
+    "person_component": 43.10660676480679
+  },
+  {
+    "year": 2009,
+    "total_change": 0.8934834169720469,
+    "person_change": 0.09174700038163941,
+    "population_component": 242.0703845529168,
+    "person_component": 39.53398806834327
+  },
+  {
+    "year": 2010,
+    "total_change": 0.8990946873668673,
+    "person_change": 0.07807946508549746,
+    "population_component": 249.3937056677783,
+    "person_component": 33.979203726661815
+  },
+  {
+    "year": 2011,
+    "total_change": 0.9359309949877559,
+    "person_change": 0.08382555696054128,
+    "population_component": 258.1773931660729,
+    "person_component": 36.80542985431704
+  },
+  {
+    "year": 2012,
+    "total_change": 0.9398468467829493,
+    "person_change": 0.06722246312712765,
+    "population_component": 266.36827851731414,
+    "person_component": 29.848726321245866
+  },
+  {
+    "year": 2013,
+    "total_change": 0.9092057866765788,
+    "person_change": 0.03244135199885689,
+    "population_component": 271.99345783438383,
+    "person_component": 14.566225621596157
+  },
+  {
+    "year": 2014,
+    "total_change": 0.880927548066246,
+    "person_change": 0.002090454083622406,
+    "population_component": 276.6992940907649,
+    "person_component": 0.9477721957951976
+  },
+  {
+    "year": 2015,
+    "total_change": 0.8937178339102978,
+    "person_change": -0.005511676135466992,
+    "population_component": 284.2007779343606,
+    "person_component": -2.522522761310457
+  },
+  {
+    "year": 2016,
+    "total_change": 0.8838008395651944,
+    "person_change": -0.02605152008389411,
+    "population_component": 290.5986931998506,
+    "person_component": -12.046034896080537
+  },
+  {
+    "year": 2017,
+    "total_change": 0.9270920970551835,
+    "person_change": -0.01994288450368964,
+    "population_component": 301.5193963170739,
+    "person_component": -9.322380240253983
+  },
+  {
+    "year": 2018,
+    "total_change": 0.9184077036810658,
+    "person_change": -0.03884640578809506,
+    "population_component": 307.8002408214246,
+    "person_component": -18.340335586574678
+  },
+  {
+    "year": 2019,
+    "total_change": 0.9082585222408195,
+    "person_change": -0.057953295686107076,
+    "population_component": 313.8936156471204,
+    "person_component": -27.632487040700376
+  },
+  {
+    "year": 2020,
+    "total_change": 0.8291946974721833,
+    "person_change": -0.10805423686165794,
+    "population_component": 313.2911252550028,
+    "person_component": -51.94900280816284
+  },
+  {
+    "year": 2021,
+    "total_change": 0.8170198866469331,
+    "person_change": -0.11523834142535094,
+    "population_component": 312.9603158425617,
+    "person_component": -55.455399435701615
+  },
+  {
+    "year": 2022,
+    "total_change": 0.8005749805801303,
+    "person_change": -0.134477391024882,
+    "population_component": 317.60032481993255,
+    "person_component": -65.27844524150254
+  },
+  {
+    "year": 2023,
+    "total_change": 0.8474154072890927,
+    "person_change": -0.13331987621851693,
+    "population_component": 332.87851737997886,
+    "person_component": -65.7936676936187
+  },
+  {
+    "year": 2024,
+    "total_change": 0.8588671852292173,
+    "person_change": -0.14508320293234322,
+    "population_component": 343.2699113608863,
+    "person_component": -72.57573812025632
+  },
+  {
+    "year": 2025,
+    "total_change": 0.834094825340461,
+    "person_change": -0.16930967745308245,
+    "population_component": 348.4774517595484,
+    "person_component": -85.59092747166835
+  }
+]

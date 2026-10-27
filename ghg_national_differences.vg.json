@@ -9,12 +9,14 @@
   },
   "background": "transparent",
   "data": {
-    "url": "data/ghg_sector_shares_2025.csv",
+    "url": "data/ghg_continent_sector_shares_2025.csv",
     "format": {
       "type": "csv",
       "parse": {
         "share": "number",
-        "emissions_mt": "number"
+        "emissions_mt": "number",
+        "continent_total_mt": "number",
+        "country_count": "number"
       }
     }
   },
@@ -36,30 +38,32 @@
       "axis": {
         "labelAngle": -25,
         "labelLimit": 160,
-        "labelFontSize": 11
+        "labelFontSize": 12,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "y": {
-      "field": "country",
+      "field": "continent",
       "type": "nominal",
       "sort": [
-        "China",
-        "United States",
-        "India",
-        "Russia",
-        "Indonesia",
-        "Brazil",
-        "Japan",
-        "Germany",
-        "Australia",
-        "South Africa"
+        "Asia",
+        "Europe",
+        "North America",
+        "South America",
+        "Africa",
+        "Oceania"
       ],
       "title": null
     },
     "color": {
       "field": "share",
       "type": "quantitative",
-      "title": "Share of national emissions",
+      "title": "Share of continental emissions",
       "scale": {
         "domain": [
           0,
@@ -71,24 +75,12 @@
         ],
         "nice": false
       },
-      "legend": {
-        "orient": "bottom",
-        "format": ".0%",
-        "gradientLength": 190,
-        "values": [
-          0.0,
-          0.1,
-          0.2,
-          0.3,
-          0.4,
-          0.5
-        ]
-      }
+      "legend": null
     },
     "tooltip": [
       {
-        "field": "country",
-        "title": "Country"
+        "field": "continent",
+        "title": "Continent"
       },
       {
         "field": "sector",
@@ -97,14 +89,26 @@
       {
         "field": "share",
         "type": "quantitative",
-        "title": "Share of national emissions",
+        "title": "Share of continental emissions",
         "format": ".1%"
       },
       {
         "field": "emissions_mt",
         "type": "quantitative",
-        "title": "Emissions (Mt CO₂eq)",
+        "title": "Sector emissions (Mt CO₂eq)",
         "format": ",.1f"
+      },
+      {
+        "field": "continent_total_mt",
+        "type": "quantitative",
+        "title": "Continental total (Mt CO₂eq)",
+        "format": ",.1f"
+      },
+      {
+        "field": "country_count",
+        "type": "quantitative",
+        "title": "Countries / territories",
+        "format": "d"
       }
     ]
   },
@@ -121,26 +125,31 @@
     "view": {
       "stroke": null
     },
-    "font": "Segoe UI",
+    "font": "Manrope",
     "axis": {
       "domain": false,
       "ticks": false,
       "labelPadding": 7,
       "labelColor": "#526358",
       "grid": false,
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI",
-      "labelFontSize": 11
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 400,
+      "titleColor": "#526358"
     },
     "legend": {
       "labelColor": "#526358",
-      "titleColor": "#253d35",
-      "titleFontSize": 12,
-      "labelFont": "Segoe UI",
-      "titleFont": "Segoe UI"
+      "titleColor": "#173f35",
+      "titleFontSize": 13,
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontWeight": 600
     },
     "text": {
-      "font": "Segoe UI"
+      "font": "Manrope"
     }
   }
 }

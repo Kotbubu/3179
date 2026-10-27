@@ -1,0 +1,522 @@
+[
+  {
+    "id": "all_emissions",
+    "parent": null,
+    "name": "All emissions",
+    "emissions_mt": 0,
+    "category": "All"
+  },
+  {
+    "id": "group_Energy",
+    "parent": "all_emissions",
+    "name": "Energy",
+    "emissions_mt": 0,
+    "category": "Energy",
+    "category_total_mt": 40402.520566169034,
+    "category_share": 0.7470831625120001
+  },
+  {
+    "id": "group_Industry",
+    "parent": "all_emissions",
+    "name": "Industry",
+    "emissions_mt": 0,
+    "category": "Industry",
+    "category_total_mt": 5213.653201144745,
+    "category_share": 0.09640568130824805
+  },
+  {
+    "id": "group_Agriculture",
+    "parent": "all_emissions",
+    "name": "Agriculture",
+    "emissions_mt": 0,
+    "category": "Agriculture",
+    "category_total_mt": 6292.0343705927635,
+    "category_share": 0.11634603164221251
+  },
+  {
+    "id": "group_Waste",
+    "parent": "all_emissions",
+    "name": "Waste",
+    "emissions_mt": 0,
+    "category": "Waste",
+    "category_total_mt": 1932.5062543411461,
+    "category_share": 0.03573398054962735
+  },
+  {
+    "id": "group_Other",
+    "parent": "all_emissions",
+    "name": "Other",
+    "emissions_mt": 0,
+    "category": "Other",
+    "category_total_mt": 239.6378276031482,
+    "category_share": 0.004431143987911866
+  },
+  {
+    "id": "1.A.1.a",
+    "parent": "group_Energy",
+    "name": "Power & heat",
+    "full_name": "Main Activity Electricity and Heat Production",
+    "category": "Energy",
+    "emissions_mt": 15776.288815174485,
+    "share": 0.29171941689728137,
+    "name_lines": [
+      "Power & heat"
+    ]
+  },
+  {
+    "id": "1.A.2",
+    "parent": "group_Energy",
+    "name": "Manufacturing combustion",
+    "full_name": "Manufacturing Industries and Construction",
+    "category": "Energy",
+    "emissions_mt": 6249.179664499938,
+    "share": 0.11555360510773635,
+    "name_lines": [
+      "Manufacturing",
+      "combustion"
+    ]
+  },
+  {
+    "id": "1.A.3.b",
+    "parent": "group_Energy",
+    "name": "Road transport",
+    "full_name": "Road Transportation",
+    "category": "Energy",
+    "emissions_mt": 6467.235511688063,
+    "share": 0.11958567661314502,
+    "name_lines": [
+      "Road transport"
+    ]
+  },
+  {
+    "id": "1.A.4",
+    "parent": "group_Energy",
+    "name": "Residential & other sectors",
+    "full_name": "Residential and other sectors",
+    "category": "Energy",
+    "emissions_mt": 3423.3741582898288,
+    "share": 0.06330162467087702,
+    "name_lines": [
+      "Residential & other",
+      "sectors"
+    ]
+  },
+  {
+    "id": "1.A.5",
+    "parent": "group_Energy",
+    "name": "Unspecified combustion",
+    "full_name": "Non-Specified",
+    "category": "Energy",
+    "emissions_mt": 144.15812763018937,
+    "share": 0.0026656284900687904,
+    "name_lines": [
+      "Unspecified",
+      "combustion"
+    ]
+  },
+  {
+    "id": "1.B.1",
+    "parent": "group_Energy",
+    "name": "Solid fuel supply",
+    "full_name": "Solid Fuels",
+    "category": "Energy",
+    "emissions_mt": 2187.7995717565123,
+    "share": 0.04045461025961022,
+    "name_lines": [
+      "Solid fuel supply"
+    ]
+  },
+  {
+    "id": "1.A.3.a",
+    "parent": "group_Energy",
+    "name": "Aviation",
+    "full_name": "Civil Aviation",
+    "category": "Energy",
+    "emissions_mt": 1063.0682756596061,
+    "share": 0.01965719955628163,
+    "name_lines": [
+      "Aviation"
+    ]
+  },
+  {
+    "id": "1.A.3.d",
+    "parent": "group_Energy",
+    "name": "Shipping",
+    "full_name": "Water-borne Navigation",
+    "category": "Energy",
+    "emissions_mt": 900.2459762331882,
+    "share": 0.016646451794053628,
+    "name_lines": [
+      "Shipping"
+    ]
+  },
+  {
+    "id": "1.A.3.e",
+    "parent": "group_Energy",
+    "name": "Other transport",
+    "full_name": "Other Transportation",
+    "category": "Energy",
+    "emissions_mt": 224.7347338073588,
+    "share": 0.004155570823461967,
+    "name_lines": [
+      "Other transport"
+    ]
+  },
+  {
+    "id": "2.A.3",
+    "parent": "group_Industry",
+    "name": "Glass",
+    "full_name": "Glass Production",
+    "category": "Industry",
+    "emissions_mt": 10.919503074591137,
+    "share": 0.00020191257316891148,
+    "name_lines": [
+      "Glass"
+    ]
+  },
+  {
+    "id": "2.A.4",
+    "parent": "group_Industry",
+    "name": "Other carbonate uses",
+    "full_name": "Other Process Uses of Carbonates",
+    "category": "Industry",
+    "emissions_mt": 108.23576453345161,
+    "share": 0.0020013879364809755,
+    "name_lines": [
+      "Other carbonate",
+      "uses"
+    ]
+  },
+  {
+    "id": "2.D",
+    "parent": "group_Industry",
+    "name": "Fuel & solvent products",
+    "full_name": "Non-Energy Products from Fuels and Solvent Use",
+    "category": "Industry",
+    "emissions_mt": 87.94572912820821,
+    "share": 0.0016262048141011678,
+    "name_lines": [
+      "Fuel & solvent",
+      "products"
+    ]
+  },
+  {
+    "id": "2.G",
+    "parent": "group_Industry",
+    "name": "Other products",
+    "full_name": "Other Product Manufacture and Use",
+    "category": "Industry",
+    "emissions_mt": 237.64038351233046,
+    "share": 0.004394209241579268,
+    "name_lines": [
+      "Other products"
+    ]
+  },
+  {
+    "id": "3.A.1",
+    "parent": "group_Agriculture",
+    "name": "Livestock digestion",
+    "full_name": "Enteric Fermentation",
+    "category": "Agriculture",
+    "emissions_mt": 3209.425205020257,
+    "share": 0.05934549375664382,
+    "name_lines": [
+      "Livestock digestion"
+    ]
+  },
+  {
+    "id": "3.A.2",
+    "parent": "group_Agriculture",
+    "name": "Manure management",
+    "full_name": "Manure Management",
+    "category": "Agriculture",
+    "emissions_mt": 437.3744367600482,
+    "share": 0.008087492385071868,
+    "name_lines": [
+      "Manure management"
+    ]
+  },
+  {
+    "id": "3.C.4",
+    "parent": "group_Agriculture",
+    "name": "Managed soils: direct N₂O",
+    "full_name": "Direct N2O Emissions from managed soils",
+    "category": "Agriculture",
+    "emissions_mt": 1422.9713803182299,
+    "share": 0.026312169242786683,
+    "name_lines": [
+      "Managed soils:",
+      "direct N₂O"
+    ]
+  },
+  {
+    "id": "3.C.5",
+    "parent": "group_Agriculture",
+    "name": "Managed soils: indirect N₂O",
+    "full_name": "Indirect N2O Emissions from managed soils",
+    "category": "Agriculture",
+    "emissions_mt": 249.3212637000037,
+    "share": 0.004610200441861903,
+    "name_lines": [
+      "Managed soils:",
+      "indirect N₂O"
+    ]
+  },
+  {
+    "id": "3.C.6",
+    "parent": "group_Agriculture",
+    "name": "Manure: indirect N₂O",
+    "full_name": "Indirect N2O Emissions from manure management",
+    "category": "Agriculture",
+    "emissions_mt": 11.880778893610882,
+    "share": 0.0002196875280196474,
+    "name_lines": [
+      "Manure: indirect",
+      "N₂O"
+    ]
+  },
+  {
+    "id": "4.A",
+    "parent": "group_Waste",
+    "name": "Solid waste disposal",
+    "full_name": "Solid Waste Disposal",
+    "category": "Waste",
+    "emissions_mt": 841.3571164461611,
+    "share": 0.015557537662214611,
+    "name_lines": [
+      "Solid waste",
+      "disposal"
+    ]
+  },
+  {
+    "id": "4.D",
+    "parent": "group_Waste",
+    "name": "Wastewater",
+    "full_name": "Wastewater Treatment and Discharge",
+    "category": "Waste",
+    "emissions_mt": 957.3323961041455,
+    "share": 0.017702037002502086,
+    "name_lines": [
+      "Wastewater"
+    ]
+  },
+  {
+    "id": "4.E",
+    "parent": "group_Waste",
+    "name": "Other waste",
+    "full_name": "Other",
+    "category": "Waste",
+    "emissions_mt": 46.62553569171069,
+    "share": 0.0008621529590296607,
+    "name_lines": [
+      "Other waste"
+    ]
+  },
+  {
+    "id": "5.A",
+    "parent": "group_Other",
+    "name": "Atmospheric nitrogen deposition",
+    "full_name": "Indirect N2O emissions from the atmospheric deposition of nitrogen in NOx and NH3",
+    "category": "Other",
+    "emissions_mt": 187.43108260314818,
+    "share": 0.003465788866189177,
+    "name_lines": [
+      "Atmospheric",
+      "nitrogen deposition"
+    ]
+  },
+  {
+    "id": "3.C.1",
+    "parent": "group_Agriculture",
+    "name": "Biomass burning",
+    "full_name": "Emissions from biomass burning",
+    "category": "Agriculture",
+    "emissions_mt": 86.04037437888071,
+    "share": 0.0015909728921347254,
+    "name_lines": [
+      "Biomass burning"
+    ]
+  },
+  {
+    "id": "1.A.1.bc",
+    "parent": "group_Energy",
+    "name": "Refining & energy industries",
+    "full_name": "Petroleum Refining - Manufacture of Solid Fuels and Other Energy Industries",
+    "category": "Energy",
+    "emissions_mt": 1680.9996991313542,
+    "share": 0.031083371874089293,
+    "name_lines": [
+      "Refining & energy",
+      "industries"
+    ]
+  },
+  {
+    "id": "1.B.2",
+    "parent": "group_Energy",
+    "name": "Oil & gas supply",
+    "full_name": "Oil and Natural Gas",
+    "category": "Energy",
+    "emissions_mt": 2181.21837982083,
+    "share": 0.04033291741432459,
+    "name_lines": [
+      "Oil & gas supply"
+    ]
+  },
+  {
+    "id": "2.A.1",
+    "parent": "group_Industry",
+    "name": "Cement",
+    "full_name": "Cement production",
+    "category": "Industry",
+    "emissions_mt": 1408.0342238464214,
+    "share": 0.026035966225264072,
+    "name_lines": [
+      "Cement"
+    ]
+  },
+  {
+    "id": "2.C",
+    "parent": "group_Industry",
+    "name": "Metals",
+    "full_name": "Metal Industry",
+    "category": "Industry",
+    "emissions_mt": 475.69178789701033,
+    "share": 0.008796018671683168,
+    "name_lines": [
+      "Metals"
+    ]
+  },
+  {
+    "id": "2.F",
+    "parent": "group_Industry",
+    "name": "ODS substitutes",
+    "full_name": "Product Uses as Substitutes for Ozone Depleting Substances",
+    "category": "Industry",
+    "emissions_mt": 1368.2064199958452,
+    "share": 0.025299510151740996,
+    "name_lines": [
+      "ODS substitutes"
+    ]
+  },
+  {
+    "id": "3.C.3",
+    "parent": "group_Agriculture",
+    "name": "Urea application",
+    "full_name": "Urea application",
+    "category": "Agriculture",
+    "emissions_mt": 96.83468604829805,
+    "share": 0.001790570550551143,
+    "name_lines": [
+      "Urea application"
+    ]
+  },
+  {
+    "id": "3.C.7",
+    "parent": "group_Agriculture",
+    "name": "Rice cultivation",
+    "full_name": "Rice cultivations",
+    "category": "Agriculture",
+    "emissions_mt": 718.0627530802308,
+    "share": 0.013277701117054804,
+    "name_lines": [
+      "Rice cultivation"
+    ]
+  },
+  {
+    "id": "2.A.2",
+    "parent": "group_Industry",
+    "name": "Lime",
+    "full_name": "Lime production",
+    "category": "Industry",
+    "emissions_mt": 317.90003012955725,
+    "share": 0.005878290674535737,
+    "name_lines": [
+      "Lime"
+    ]
+  },
+  {
+    "id": "4.C",
+    "parent": "group_Waste",
+    "name": "Waste burning",
+    "full_name": "Incineration and Open Burning of Waste",
+    "category": "Waste",
+    "emissions_mt": 60.987789206918194,
+    "share": 0.0011277254437801515,
+    "name_lines": [
+      "Waste burning"
+    ]
+  },
+  {
+    "id": "1.A.3.c",
+    "parent": "group_Energy",
+    "name": "Railways",
+    "full_name": "Railways",
+    "category": "Energy",
+    "emissions_mt": 104.2176524776855,
+    "share": 0.0019270890110702932,
+    "name_lines": [
+      "Railways"
+    ]
+  },
+  {
+    "id": "3.C.2",
+    "parent": "group_Agriculture",
+    "name": "Liming",
+    "full_name": "Liming",
+    "category": "Agriculture",
+    "emissions_mt": 60.12349239320346,
+    "share": 0.0011117437280878954,
+    "name_lines": [
+      "Liming"
+    ]
+  },
+  {
+    "id": "2.B",
+    "parent": "group_Industry",
+    "name": "Chemicals",
+    "full_name": "Chemical Industry",
+    "category": "Industry",
+    "emissions_mt": 1142.8195783122856,
+    "share": 0.02113188119904293,
+    "name_lines": [
+      "Chemicals"
+    ]
+  },
+  {
+    "id": "4.B",
+    "parent": "group_Waste",
+    "name": "Biological treatment",
+    "full_name": "Biological Treatment of Solid Waste",
+    "category": "Waste",
+    "emissions_mt": 26.203416892210797,
+    "share": 0.00048452748210083804,
+    "name_lines": [
+      "Biological",
+      "treatment"
+    ]
+  },
+  {
+    "id": "5.B",
+    "parent": "group_Other",
+    "name": "Fossil fuel fires",
+    "full_name": "Fossil fuel fires",
+    "category": "Other",
+    "emissions_mt": 52.206745,
+    "share": 0.0009653551217226889,
+    "name_lines": [
+      "Fossil fuel fires"
+    ]
+  },
+  {
+    "id": "2.E",
+    "parent": "group_Industry",
+    "name": "Electronics",
+    "full_name": "Electronics Industry",
+    "category": "Industry",
+    "emissions_mt": 56.25978071504456,
+    "share": 0.0010402998206508302,
+    "name_lines": [
+      "Electronics"
+    ]
+  }
+]

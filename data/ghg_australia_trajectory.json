@@ -1,0 +1,450 @@
+[
+  {
+    "year": 1970,
+    "emissions_mt": 315.17582450002,
+    "per_person": 25.199953985769568,
+    "population": 12507000.0,
+    "delta_total": 0,
+    "delta_person": 0
+  },
+  {
+    "year": 1971,
+    "emissions_mt": 321.39153691882,
+    "per_person": 24.842818035001933,
+    "population": 12937000.0,
+    "delta_total": 6.215712418800024,
+    "delta_person": -0.3571359507676348
+  },
+  {
+    "year": 1972,
+    "emissions_mt": 333.45732106745,
+    "per_person": 25.30601207159824,
+    "population": 13177000.0,
+    "delta_total": 12.065784148629973,
+    "delta_person": 0.4631940365963061
+  },
+  {
+    "year": 1973,
+    "emissions_mt": 340.71943712395,
+    "per_person": 25.464830876229446,
+    "population": 13380000.0,
+    "delta_total": 7.26211605650002,
+    "delta_person": 0.15881880463120623
+  },
+  {
+    "year": 1974,
+    "emissions_mt": 355.10547953018,
+    "per_person": 25.87666541792465,
+    "population": 13723000.0,
+    "delta_total": 14.38604240622999,
+    "delta_person": 0.41183454169520317
+  },
+  {
+    "year": 1975,
+    "emissions_mt": 364.39487027629,
+    "per_person": 26.22866697446844,
+    "population": 13893000.0,
+    "delta_total": 9.28939074611003,
+    "delta_person": 0.3520015565437902
+  },
+  {
+    "year": 1976,
+    "emissions_mt": 367.61258888448,
+    "per_person": 26.196293656700636,
+    "population": 14033000.0,
+    "delta_total": 3.217718608189955,
+    "delta_person": -0.032373317767802945
+  },
+  {
+    "year": 1977,
+    "emissions_mt": 374.15632600392,
+    "per_person": 26.36388993826945,
+    "population": 14192000.0,
+    "delta_total": 6.543737119440038,
+    "delta_person": 0.16759628156881234
+  },
+  {
+    "year": 1978,
+    "emissions_mt": 365.05514403376,
+    "per_person": 25.425208527215485,
+    "population": 14358000.0,
+    "delta_total": -9.101181970160042,
+    "delta_person": -0.9386814110539632
+  },
+  {
+    "year": 1979,
+    "emissions_mt": 369.10442993328,
+    "per_person": 25.4309239309136,
+    "population": 14514000.0,
+    "delta_total": 4.049285899520044,
+    "delta_person": 0.005715403698115296
+  },
+  {
+    "year": 1980,
+    "emissions_mt": 376.27098315275,
+    "per_person": 25.61060326386809,
+    "population": 14692000.0,
+    "delta_total": 7.166553219469961,
+    "delta_person": 0.179679332954489
+  },
+  {
+    "year": 1981,
+    "emissions_mt": 379.54401015625,
+    "per_person": 25.433049491615773,
+    "population": 14923260.0,
+    "delta_total": 3.273027003500033,
+    "delta_person": -0.17755377225231683
+  },
+  {
+    "year": 1982,
+    "emissions_mt": 388.01780418827,
+    "per_person": 25.553970782237013,
+    "population": 15184247.0,
+    "delta_total": 8.47379403202001,
+    "delta_person": 0.12092129062124002
+  },
+  {
+    "year": 1983,
+    "emissions_mt": 375.64942353545,
+    "per_person": 24.40316411628579,
+    "population": 15393472.0,
+    "delta_total": -12.368380652820008,
+    "delta_person": -1.1508066659512224
+  },
+  {
+    "year": 1984,
+    "emissions_mt": 390.0769548712,
+    "per_person": 25.038010463387174,
+    "population": 15579391.0,
+    "delta_total": 14.427531335749961,
+    "delta_person": 0.6348463471013837
+  },
+  {
+    "year": 1985,
+    "emissions_mt": 402.97464740919,
+    "per_person": 25.523605525985932,
+    "population": 15788312.0,
+    "delta_total": 12.897692537990054,
+    "delta_person": 0.4855950625987582
+  },
+  {
+    "year": 1986,
+    "emissions_mt": 408.20885598656,
+    "per_person": 25.483826735372872,
+    "population": 16018350.0,
+    "delta_total": 5.234208577369998,
+    "delta_person": -0.039778790613059556
+  },
+  {
+    "year": 1987,
+    "emissions_mt": 418.88242793472,
+    "per_person": 25.755390624319887,
+    "population": 16263874.0,
+    "delta_total": 10.673571948159974,
+    "delta_person": 0.2715638889470142
+  },
+  {
+    "year": 1988,
+    "emissions_mt": 429.56268119595,
+    "per_person": 25.983451482573606,
+    "population": 16532164.0,
+    "delta_total": 10.680253261230007,
+    "delta_person": 0.2280608582537198
+  },
+  {
+    "year": 1989,
+    "emissions_mt": 450.81474949049,
+    "per_person": 26.81120471210478,
+    "population": 16814416.0,
+    "delta_total": 21.25206829453998,
+    "delta_person": 0.8277532295311723
+  },
+  {
+    "year": 1990,
+    "emissions_mt": 461.11884749013,
+    "per_person": 27.02111859284794,
+    "population": 17065128.0,
+    "delta_total": 10.304097999640021,
+    "delta_person": 0.2099138807431622
+  },
+  {
+    "year": 1991,
+    "emissions_mt": 463.52412166726,
+    "per_person": 26.81804884387304,
+    "population": 17284036.0,
+    "delta_total": 2.405274177129968,
+    "delta_person": -0.20306974897490093
+  },
+  {
+    "year": 1992,
+    "emissions_mt": 466.12228566206,
+    "per_person": 26.668117141988493,
+    "population": 17478635.0,
+    "delta_total": 2.598163994800018,
+    "delta_person": -0.1499317018845474
+  },
+  {
+    "year": 1993,
+    "emissions_mt": 469.44364862578,
+    "per_person": 26.620286913573427,
+    "population": 17634808.0,
+    "delta_total": 3.3213629637199915,
+    "delta_person": -0.04783022841506579
+  },
+  {
+    "year": 1994,
+    "emissions_mt": 471.42947328221,
+    "per_person": 26.476668475224017,
+    "population": 17805468.0,
+    "delta_total": 1.9858246564299975,
+    "delta_person": -0.14361843834941013
+  },
+  {
+    "year": 1995,
+    "emissions_mt": 481.49417490873,
+    "per_person": 26.74242324435839,
+    "population": 18004882.0,
+    "delta_total": 10.064701626519991,
+    "delta_person": 0.26575476913437157
+  },
+  {
+    "year": 1996,
+    "emissions_mt": 493.7844413624,
+    "per_person": 27.094142896992867,
+    "population": 18224767.0,
+    "delta_total": 12.290266453670029,
+    "delta_person": 0.351719652634479
+  },
+  {
+    "year": 1997,
+    "emissions_mt": 505.54705285723,
+    "per_person": 27.441026843577962,
+    "population": 18423037.0,
+    "delta_total": 11.762611494830026,
+    "delta_person": 0.3468839465850948
+  },
+  {
+    "year": 1998,
+    "emissions_mt": 527.11147303846,
+    "per_person": 28.327776085195154,
+    "population": 18607584.0,
+    "delta_total": 21.564420181229934,
+    "delta_person": 0.886749241617192
+  },
+  {
+    "year": 1999,
+    "emissions_mt": 533.35468760486,
+    "per_person": 28.351435404311783,
+    "population": 18812264.0,
+    "delta_total": 6.24321456640007,
+    "delta_person": 0.023659319116628552
+  },
+  {
+    "year": 2000,
+    "emissions_mt": 543.20822796882,
+    "per_person": 28.54663304441446,
+    "population": 19028802.0,
+    "delta_total": 9.85354036395995,
+    "delta_person": 0.19519764010267693
+  },
+  {
+    "year": 2001,
+    "emissions_mt": 553.94873987316,
+    "per_person": 28.739680053825996,
+    "population": 19274701.0,
+    "delta_total": 10.740511904339996,
+    "delta_person": 0.1930470094115364
+  },
+  {
+    "year": 2002,
+    "emissions_mt": 561.90244149157,
+    "per_person": 28.822589830608134,
+    "population": 19495210.0,
+    "delta_total": 7.953701618410037,
+    "delta_person": 0.08290977678213807
+  },
+  {
+    "year": 2003,
+    "emissions_mt": 553.38671290131,
+    "per_person": 28.061157800609077,
+    "population": 19720737.0,
+    "delta_total": -8.515728590259982,
+    "delta_person": -0.7614320299990567
+  },
+  {
+    "year": 2004,
+    "emissions_mt": 572.89606390247,
+    "per_person": 28.741486682173665,
+    "population": 19932722.0,
+    "delta_total": 19.509351001159985,
+    "delta_person": 0.6803288815645878
+  },
+  {
+    "year": 2005,
+    "emissions_mt": 576.52504243626,
+    "per_person": 28.57359864784899,
+    "population": 20176844.0,
+    "delta_total": 3.6289785337900184,
+    "delta_person": -0.16788803432467603
+  },
+  {
+    "year": 2006,
+    "emissions_mt": 581.75139704394,
+    "per_person": 28.446157362148075,
+    "population": 20450966.0,
+    "delta_total": 5.226354607679923,
+    "delta_person": -0.12744128570091462
+  },
+  {
+    "year": 2007,
+    "emissions_mt": 590.51793195212,
+    "per_person": 28.352633438042997,
+    "population": 20827622.0,
+    "delta_total": 8.766534908180006,
+    "delta_person": -0.09352392410507804
+  },
+  {
+    "year": 2008,
+    "emissions_mt": 589.74921654965,
+    "per_person": 27.753950468892967,
+    "population": 21249199.0,
+    "delta_total": -0.7687154024699794,
+    "delta_person": -0.5986829691500297
+  },
+  {
+    "year": 2009,
+    "emissions_mt": 596.78019712128,
+    "per_person": 27.511974173719267,
+    "population": 21691653.0,
+    "delta_total": 7.030980571630039,
+    "delta_person": -0.2419762951736999
+  },
+  {
+    "year": 2010,
+    "emissions_mt": 598.54873389446,
+    "per_person": 27.167552913157607,
+    "population": 22031750.0,
+    "delta_total": 1.768536773180017,
+    "delta_person": -0.3444212605616599
+  },
+  {
+    "year": 2011,
+    "emissions_mt": 610.15864752041,
+    "per_person": 27.312354164006713,
+    "population": 22340024.0,
+    "delta_total": 11.609913625949957,
+    "delta_person": 0.1448012508491061
+  },
+  {
+    "year": 2012,
+    "emissions_mt": 611.39282933858,
+    "per_person": 26.89395696338328,
+    "population": 22733465.0,
+    "delta_total": 1.2341818181699864,
+    "delta_person": -0.4183972006234349
+  },
+  {
+    "year": 2013,
+    "emissions_mt": 601.735507956,
+    "per_person": 26.017474563376915,
+    "population": 23128129.0,
+    "delta_total": -9.657321382579994,
+    "delta_person": -0.8764824000063633
+  },
+  {
+    "year": 2014,
+    "emissions_mt": 592.82289078658,
+    "per_person": 25.25263333248622,
+    "population": 23475686.0,
+    "delta_total": -8.912617169419946,
+    "delta_person": -0.7648412308906956
+  },
+  {
+    "year": 2015,
+    "emissions_mt": 596.85407967307,
+    "per_person": 25.061060000771334,
+    "population": 23815995.0,
+    "delta_total": 4.031188886489986,
+    "delta_person": -0.1915733317148849
+  },
+  {
+    "year": 2016,
+    "emissions_mt": 593.72848280379,
+    "per_person": 24.543456878396086,
+    "population": 24190907.0,
+    "delta_total": -3.1255968692800025,
+    "delta_person": -0.5176031223752489
+  },
+  {
+    "year": 2017,
+    "emissions_mt": 607.37284057684,
+    "per_person": 24.697394213933073,
+    "population": 24592588.0,
+    "delta_total": 13.644357773049933,
+    "delta_person": 0.15393733553698752
+  },
+  {
+    "year": 2018,
+    "emissions_mt": 604.63572973487,
+    "per_person": 24.22102634739704,
+    "population": 24963258.0,
+    "delta_total": -2.7371108419699794,
+    "delta_person": -0.4763678665360338
+  },
+  {
+    "year": 2019,
+    "emissions_mt": 601.43695310644,
+    "per_person": 23.739533601155973,
+    "population": 25334826.0,
+    "delta_total": -3.1987766284299823,
+    "delta_person": -0.4814927462410665
+  },
+  {
+    "year": 2020,
+    "emissions_mt": 576.51794694686,
+    "per_person": 22.476992188888342,
+    "population": 25649248.0,
+    "delta_total": -24.91900615958002,
+    "delta_person": -1.2625414122676304
+  },
+  {
+    "year": 2021,
+    "emissions_mt": 572.68074090688,
+    "per_person": 22.29595308445432,
+    "population": 25685412.0,
+    "delta_total": -3.8372060399799466,
+    "delta_person": -0.18103910443402071
+  },
+  {
+    "year": 2022,
+    "emissions_mt": 567.49770407845,
+    "per_person": 21.8111299198162,
+    "population": 26018721.0,
+    "delta_total": -5.183036828429977,
+    "delta_person": -0.48482316463812225
+  },
+  {
+    "year": 2023,
+    "emissions_mt": 582.26067418638,
+    "per_person": 21.840299239674447,
+    "population": 26659922.0,
+    "delta_total": 14.76297010792996,
+    "delta_person": 0.02916931985824789
+  },
+  {
+    "year": 2024,
+    "emissions_mt": 585.86999774065,
+    "per_person": 21.54386394776645,
+    "population": 27194286.0,
+    "delta_total": 3.609323554269963,
+    "delta_person": -0.2964352919079971
+  },
+  {
+    "year": 2025,
+    "emissions_mt": 578.0623487879,
+    "per_person": 20.933357904606403,
+    "population": 27614411.0,
+    "delta_total": -7.807648952750014,
+    "delta_person": -0.6105060431600471
+  }
+]

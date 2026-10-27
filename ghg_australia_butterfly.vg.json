@@ -1,0 +1,646 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Mirrored sector emissions per person in Australia and 76 other high-income countries, 2025. Both panels share a zero-to-16 scale. The peer value is pooled emissions divided by pooled population.",
+  "width": 800,
+  "height": 330,
+  "padding": {
+    "left": 4,
+    "right": 4,
+    "top": 4,
+    "bottom": 4
+  },
+  "autosize": {
+    "type": "none",
+    "resize": true
+  },
+  "background": "transparent",
+  "signals": [
+    {
+      "name": "width",
+      "init": "max(240,(containerSize()[0] || 808)-8)",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "max(240,containerSize()[0]-8)"
+        }
+      ]
+    },
+    {
+      "name": "compact",
+      "update": "width < 520"
+    },
+    {
+      "name": "panel_width",
+      "update": "compact ? max(100,width-160) : (width-150)/2"
+    },
+    {
+      "name": "height",
+      "update": "compact ? 620 : 310"
+    },
+    {
+      "name": "aus_y",
+      "value": 42
+    },
+    {
+      "name": "peer_y",
+      "update": "compact ? 340 : 42"
+    }
+  ],
+  "data": [
+    {
+      "name": "comparison",
+      "url": "data/ghg_australia_peer_sectors_2025.json"
+    },
+    {
+      "name": "aus",
+      "source": "comparison",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.group === 'Australia'"
+        }
+      ]
+    },
+    {
+      "name": "peers",
+      "source": "comparison",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.group !== 'Australia'"
+        }
+      ]
+    },
+    {
+      "name": "categories",
+      "values": [
+        {
+          "sector": "Energy"
+        },
+        {
+          "sector": "Industry"
+        },
+        {
+          "sector": "Agriculture"
+        },
+        {
+          "sector": "Waste"
+        },
+        {
+          "sector": "Other"
+        }
+      ]
+    },
+    {
+      "name": "ticks",
+      "values": [
+        {
+          "tick": 0
+        },
+        {
+          "tick": 4
+        },
+        {
+          "tick": 8
+        },
+        {
+          "tick": 12
+        },
+        {
+          "tick": 16
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "row",
+      "type": "band",
+      "domain": [
+        "Energy",
+        "Industry",
+        "Agriculture",
+        "Waste",
+        "Other"
+      ],
+      "range": [
+        0,
+        210
+      ],
+      "paddingInner": 0.42,
+      "paddingOuter": 0.15
+    }
+  ],
+  "marks": [
+    {
+      "name": "aus_panel",
+      "type": "group",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 112 : 0"
+          },
+          "y": {
+            "signal": "aus_y"
+          },
+          "width": {
+            "signal": "panel_width"
+          },
+          "height": {
+            "value": 210
+          }
+        }
+      },
+      "scales": [
+        {
+          "name": "value_x",
+          "type": "linear",
+          "domain": [
+            0,
+            16
+          ],
+          "range": {
+            "signal": "compact ? [0,panel_width] : [panel_width,20]"
+          },
+          "nice": false,
+          "zero": true
+        }
+      ],
+      "axes": [
+        {
+          "orient": "bottom",
+          "scale": "value_x",
+          "values": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ],
+          "grid": false,
+          "gridColor": "#e2e6dc",
+          "gridOpacity": 0.7,
+          "domain": false,
+          "ticks": false,
+          "labelFont": "Manrope",
+          "labelFontSize": 12,
+          "labelColor": "#526358",
+          "labelPadding": 8,
+          "titleFont": "Manrope",
+          "titleFontSize": 13,
+          "titleFontWeight": 400,
+          "titleColor": "#526358"
+        }
+      ],
+      "marks": [
+        {
+          "type": "rule",
+          "interactive": false,
+          "from": {
+            "data": "ticks"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "scale": "value_x",
+                "field": "tick"
+              },
+              "y": {
+                "value": 0
+              },
+              "y2": {
+                "value": 210
+              },
+              "stroke": {
+                "value": "#e2e6dc"
+              },
+              "strokeWidth": {
+                "value": 0.7
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "aus"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "compact ? 0 : scale('value_x',datum.value)"
+              },
+              "x2": {
+                "signal": "compact ? scale('value_x',datum.value) : panel_width"
+              },
+              "y": {
+                "scale": "row",
+                "field": "sector"
+              },
+              "height": {
+                "signal": "bandwidth('row')"
+              },
+              "fill": {
+                "value": "#267f78"
+              },
+              "tooltip": {
+                "signal": "{'Group':datum.group,'Sector':datum.sector,'2025 tonnes CO₂eq per person':format(datum.value,'.3f'),'Sector emissions (Mt CO₂eq)':format(datum.emissions_mt,',.1f'),'Population':format(datum.population,',.0f'),'Countries / territories':datum.country_count}"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "interactive": false,
+          "from": {
+            "data": "aus"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "scale('value_x',datum.value) + (compact ? 5 : -5)"
+              },
+              "y": {
+                "signal": "scale('row',datum.sector)+bandwidth('row')/2"
+              },
+              "align": {
+                "signal": "compact ? 'left' : 'right'"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "text": {
+                "signal": "format(datum.value,'.2f')"
+              },
+              "font": {
+                "value": "Manrope"
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#173f35"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "peer_panel",
+      "type": "group",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 112 : panel_width+150"
+          },
+          "y": {
+            "signal": "peer_y"
+          },
+          "width": {
+            "signal": "panel_width"
+          },
+          "height": {
+            "value": 210
+          }
+        }
+      },
+      "scales": [
+        {
+          "name": "value_x",
+          "type": "linear",
+          "domain": [
+            0,
+            16
+          ],
+          "range": {
+            "signal": "compact ? [0,panel_width] : [0,panel_width-20]"
+          },
+          "nice": false,
+          "zero": true
+        }
+      ],
+      "axes": [
+        {
+          "orient": "bottom",
+          "scale": "value_x",
+          "values": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ],
+          "grid": false,
+          "gridColor": "#e2e6dc",
+          "gridOpacity": 0.7,
+          "domain": false,
+          "ticks": false,
+          "labelFont": "Manrope",
+          "labelFontSize": 12,
+          "labelColor": "#526358",
+          "labelPadding": 8,
+          "titleFont": "Manrope",
+          "titleFontSize": 13,
+          "titleFontWeight": 400,
+          "titleColor": "#526358"
+        }
+      ],
+      "marks": [
+        {
+          "type": "rule",
+          "interactive": false,
+          "from": {
+            "data": "ticks"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "scale": "value_x",
+                "field": "tick"
+              },
+              "y": {
+                "value": 0
+              },
+              "y2": {
+                "value": 210
+              },
+              "stroke": {
+                "value": "#e2e6dc"
+              },
+              "strokeWidth": {
+                "value": 0.7
+              }
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {
+            "data": "peers"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "0"
+              },
+              "x2": {
+                "signal": "scale('value_x',datum.value)"
+              },
+              "y": {
+                "scale": "row",
+                "field": "sector"
+              },
+              "height": {
+                "signal": "bandwidth('row')"
+              },
+              "fill": {
+                "value": "#5487a4"
+              },
+              "tooltip": {
+                "signal": "{'Group':datum.group,'Sector':datum.sector,'2025 tonnes CO₂eq per person':format(datum.value,'.3f'),'Sector emissions (Mt CO₂eq)':format(datum.emissions_mt,',.1f'),'Population':format(datum.population,',.0f'),'Countries / territories':datum.country_count}"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "interactive": false,
+          "from": {
+            "data": "peers"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "scale('value_x',datum.value)+5"
+              },
+              "y": {
+                "signal": "scale('row',datum.sector)+bandwidth('row')/2"
+              },
+              "align": {
+                "signal": "'left'"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "text": {
+                "signal": "format(datum.value,'.2f')"
+              },
+              "font": {
+                "value": "Manrope"
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#173f35"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "categories"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 100 : panel_width+75"
+          },
+          "y": {
+            "signal": "aus_y+scale('row',datum.sector)+bandwidth('row')/2"
+          },
+          "text": {
+            "field": "sector"
+          },
+          "align": {
+            "signal": "compact ? 'right' : 'center'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#173f35"
+          },
+          "opacity": {
+            "signal": "1"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "categories"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 100 : panel_width+75"
+          },
+          "y": {
+            "signal": "peer_y+scale('row',datum.sector)+bandwidth('row')/2"
+          },
+          "text": {
+            "field": "sector"
+          },
+          "align": {
+            "signal": "compact ? 'right' : 'center'"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#173f35"
+          },
+          "opacity": {
+            "signal": "compact ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 112+panel_width/2 : panel_width/2"
+          },
+          "y": {
+            "signal": "12"
+          },
+          "text": {
+            "value": "Australia"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": 650
+          },
+          "lineHeight": {
+            "value": 16
+          },
+          "fill": {
+            "value": "#267f78"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "compact ? 112+panel_width/2 : panel_width+150+panel_width/2"
+          },
+          "y": {
+            "signal": "compact ? peer_y-35 : 6"
+          },
+          "text": {
+            "value": [
+              "Other high-income",
+              "countries"
+            ]
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": 650
+          },
+          "lineHeight": {
+            "value": 16
+          },
+          "fill": {
+            "value": "#426e8a"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "width/2"
+          },
+          "y": {
+            "signal": "compact ? 590 : 278"
+          },
+          "text": {
+            "value": [
+              "Annual emissions per person",
+              "(tonnes CO₂eq), 2025"
+            ]
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "lineHeight": {
+            "value": 16
+          },
+          "fill": {
+            "value": "#526358"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Manrope"
+  }
+}

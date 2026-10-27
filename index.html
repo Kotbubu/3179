@@ -11,118 +11,118 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <link rel="stylesheet" href="styles.css?v=sidebar-content-roles-20261026">
+<link rel="preload" href="assets/fonts/Manrope-Variable.ttf" as="font" type="font/ttf" crossorigin="anonymous"></head>
 
 <body>
-  <main class="page">
-
+<canvas id="background-bubbles" class="bubble-field" aria-hidden="true" role="presentation"></canvas>
+<main class="page" id="top">
+ <header class="hero">
+  <p class="eyebrow">GREENHOUSE GAS EMISSIONS · 1970–2025</p>
   <h1>A World of Emissions</h1>
-
-  <p>Different paths, <strong>unequal footprints</strong>: exploring greenhouse gas emissions across countries, sectors and time.</p>
-
-
-    <aside class="units-guide" aria-labelledby="units-heading">
-    <h2 id="units-heading">Reading the numbers</h2>
-    <div class="units-columns">
-      <div class="units-item">
-        <h3>What is CO₂eq?</h3>
-        <p><span>Greenhouse gases trap different amounts of heat.</span><span>CO₂eq means carbon dioxide equivalent.</span><span>It puts their warming effects on one scale.</span><span>This comparison uses a 100-year time horizon.</span></p>
-      </div>
-      <div class="units-item">
-        <h3>Total or per person?</h3>
-        <p><span><strong>1 Mt CO₂eq = one million tonnes CO₂ equivalent.</strong></span><span>Total emissions describe a whole country.</span><span>Per-person emissions divide that total by population.</span><span>They are measured in tonnes CO₂eq per person.</span></p>
-      </div>
-    </div>
+  <p class="hero-subtitle restored-subtitle">Different paths, <strong>unequal footprints</strong></p><div class="hero-introduction unified-introduction"><p>Greenhouse gas emissions are unevenly distributed across the world.<br> Compare countries and sectors through time.<br> Explore income differences, then zoom into Australia.</p></div><aside class="reading-guide compact-unit-strip" aria-labelledby="units-heading">
+   <div class="reading-guide-heading"><h2 id="units-heading">Reading the numbers</h2></div><div class="reading-guide-columns">
+    <article><span class="guide-index">01</span><h3>CO₂ equivalent</h3><p>Different gases, compared on one scale.<br>CO₂eq measures their 100-year warming effect.</p></article><article><span class="guide-index">02</span><h3>National totals</h3><p><strong>1 Mt CO₂eq = one million tonnes.</strong><br>Used for national and sector totals.</p></article><article><span class="guide-index">03</span><h3>Per-person footprints</h3><p>National emissions divided by population.<br>Used to compare average emissions per person.</p></article></div>
   </aside>
-<section class="chart-section" aria-labelledby="chart-heading-1"><h2 id="chart-heading-1">Where Are Global Emissions Concentrated?</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare total emissions with emissions per person.</span><span class="reading-line">Both maps show <span id="selected-year">2025</span> using different measures.</span><span class="reading-line">Move the slider to compare the same year.</span></p></div><p id="map-insight" class="chart-insight" aria-live="polite"></p></div>
-  
-  <div class="map-comparison">
-    <article class="map-card"><h3>National greenhouse gas emissions</h3><p><span class="reading-line">Year: <span class="map-title-year">2025</span> · Million tonnes CO₂eq</span><span class="reading-line">Larger circles mean higher total emissions.</span></p><div id="map1"></div></article>
-    <article class="map-card"><h3>Greenhouse gas emissions per person</h3><p><span class="reading-line">Year: <span class="map-title-year">2025</span> · Tonnes CO₂eq per person</span><span class="reading-line">Darker colours mean higher emissions per person.</span></p><div id="map-per-capita"></div></article>
-  </div>
-  <div class="shared-year"><label for="map-year">Year: <output id="map-year-value">2025</output></label><div class="shared-track"><input id="map-year" type="range" min="1970" max="2025" step="1" value="2025"><div class="year-endpoints"><span>1970</span><span>2025</span></div></div></div>
-  
+ </header>
 
+ <section class="chapter" id="footprints" aria-labelledby="footprints-heading">
+  <header class="chapter-header footprints-introduction chapter-question-layout"><div class="chapter-introduction"><p class="eyebrow">01 / UNEQUAL FOOTPRINTS</p><h2 id="footprints-heading">One world, unequal emissions</h2><p>Total emissions and per-person footprints reveal different patterns.<br>Compare the maps, then examine population and income.</p></div><aside class="comparison-prompt" aria-label="Two ways to compare emissions"><h3>Two ways to compare emissions</h3><p class="chapter-question-tags"><span class="chapter-question-tag">Who contributes the most overall?</span><span class="chapter-question-tag">Who emits the most per person?</span></p></aside></header>
+  <section class="chart-block map-block" aria-labelledby="chart-heading-1">
+   <h3 id="chart-heading-1" class="sr-only">Where are global emissions concentrated?</h3>
+   <div class="map-comparison"><article class="map-card compact-map-card">
+ <div class="map-evidence-column"><div class="chart-heading"><h3>National greenhouse gas emissions</h3><p class="chart-description">National totals reveal <strong>where emissions are concentrated</strong>.<br>Compare countries’ overall contributions before accounting for population.</p></div>
+ <div id="map1" class="compact-map-plot"></div>
+ </div><aside class="reading-aside">
+  <div class="reading-tip regional-finding"><p class="stat-label">Regional share of mapped emissions</p><p id="map-region-finding-0" aria-live="polite"></p></div><div class="aside-control map-year-control"><h4><label for="map-year-0">Explore a year · <output class="map-year-stat" for="map-year-0">2025</output></label></h4><input id="map-year-0" class="map-year-slider" type="range" min="1970" max="2025" step="1" value="2025"><div class="year-endpoints"><span>1970</span><span>2025</span></div></div>
+  <div class="reading-tip"><h4>Comparing total emissions</h4><p>Compare <strong>circle areas</strong>, rather than diameters.</p></div>
+  <div class="map-legend chart-corner-legend" id="map-key-0"></div>
+ </aside></article><article class="map-card compact-map-card">
+ <div class="map-evidence-column"><div class="chart-heading"><h3>Greenhouse gas emissions per person</h3><p class="chart-description">Per-person emissions reveal <strong>a different pattern of inequality</strong>.<br>Large national totals can coexist with smaller per-person footprints.</p></div>
+ <div id="map-per-capita" class="compact-map-plot"></div>
+ </div><aside class="reading-aside">
+  <div class="reading-tip regional-finding"><p class="stat-label">Regional per-person comparison</p><p id="map-region-finding-1" aria-live="polite"></p></div><div class="aside-control map-year-control"><h4><label for="map-year-1">Explore a year · <output class="map-year-stat" for="map-year-1">2025</output></label></h4><input id="map-year-1" class="map-year-slider" type="range" min="1970" max="2025" step="1" value="2025"><div class="year-endpoints"><span>1970</span><span>2025</span></div></div>
+  <div class="reading-tip"><h4>Accounting for population</h4><p>Regional averages are <strong>population-weighted</strong>.<br>Country colours show variation within each regional average.</p></div>
+  <div class="map-legend chart-corner-legend" id="map-key-1"></div>
+ </aside></article></div>
+   <p class="sr-only">Selected year: <span id="selected-year">2025</span>. <span id="map-insight" aria-live="polite"></span></p>
   </section>
-<div class="story-charts">
-<section class="chart-section" aria-labelledby="chart-heading-2"><p class="section-kicker">02 / CHANGING TRAJECTORIES</p><h2 id="chart-heading-2">Six countries, different emissions paths</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare six countries from 1970 to 2025.</span><span class="reading-line">Lines show annual emissions in Mt CO₂eq.</span><span class="reading-line">Land use and forestry are excluded.</span></p></div><p class="chart-insight"><span class="reading-line">China’s emissions grew <strong>9.5-fold</strong> since 1970.</span><span class="reading-line">India’s grew <strong>6.4-fold</strong> over the same period.</span><span class="reading-line">US emissions ended <strong>16% below</strong> their 2000 peak.</span></p></div>
-  
-  
-  <div id="trend-panel">
-  <div id="trend2" aria-label="Greenhouse gas emissions trends for six selected countries from 1970 to 2025"></div>
-  </div>
 
+  <section class="chart-block waffle-story panel-grid" aria-labelledby="waffle-heading">
+   <div class="evidence-column"><div class="chart-heading"><h3 id="waffle-heading">Ten countries, an unequal footprint</h3><p class="chart-description">The highlighted countries are selected by <strong>total emissions</strong>.<br>The second grid compares their share of the population.</p></div>
+   <div class="waffle-display"><div class="waffle-comparison">
+    <article><h4>Share of emissions</h4><p class="waffle-number">67.8%</p><div id="emissions-waffle" aria-label="Ten largest emitters share of covered emissions in 2025"></div></article>
+    <article><h4>Share of population</h4><p class="waffle-number">50.8%</p><div id="population-waffle" aria-label="Same ten countries share of covered population in 2025"></div></article>
+   </div></div></div><aside class="stat-aside"><p class="stat-label">The gap between two shares</p><p class="stat-number">17.0</p><p>percentage points separate their emissions share<br>from their population share.</p><div class="reading-tip"><h4>Comparing the two shares</h4><p>Each square represents one percentage point.<br>Both grids cover the same <strong>203 countries</strong>.<br>Country size alone does not determine its emissions share.</p></div><div class="waffle-key chart-corner-legend"><span><i class="waffle-swatch top-ten"></i>Ten largest emitters</span><span><i class="waffle-swatch other-countries"></i>Other covered countries</span></div></aside></section>
 
-  
+  <section class="chart-block panel-grid" aria-labelledby="income-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="income-heading">Does higher income mean a larger footprint?</h3><p class="chart-description">Median emissions per person <strong>rise across income groups</strong>.<br>Income alone cannot explain differences within each group.</p></div>
+   <div class="chart-main"><div id="income-jitter-chart" aria-label="2025 national greenhouse gas emissions per person by income group"></div></div></div><aside class="stat-aside income-aside" aria-live="polite">
+    <div class="income-stat-pair">
+     <div><p class="stat-label">Selected country</p><p class="stat-number" id="income-country-value">20.9</p><p id="income-selected-summary">Australia</p></div>
+     <div><p class="stat-label">Income-group median</p><p class="stat-number" id="income-median-value">7.0</p><p id="income-selected-comparison">High income</p></div>
+    </div>
+    <p class="sr-only" id="income-relation">Australia is above its income-group median.</p>
+    <div class="aside-control"><h4>Explore a country</h4><div id="income-country-control"></div></div>
+    <div class="reading-tip"><h4>Understanding the median</h4><p>Every country counts equally, regardless of population.<br>Vertical spread shows differences within income groups.</p></div>
+   </aside></section>
+ </section>
 
-  <p class="note"><span class="reading-line">Country names sit beside their corresponding lines.</span><span class="reading-line">Hover over lines to compare exact values.</span></p></section>
-<section class="chart-section" aria-labelledby="chart-heading-3"><p class="section-kicker">03 / SHIFTING POSITIONS</p><h2 id="chart-heading-3">The changing order of global emitters</h2><div class="section-header"><div class="section-copy"><p><span class="reading-line">Follow the ten largest emitters of 2025.</span><span class="reading-line">Their historical ranks include all eligible countries.</span><span class="reading-line">A higher position means greater annual emissions.</span></p></div><p class="chart-insight"><span class="reading-line">Ranks use a fixed scale throughout.</span><span class="reading-line">All years appear together for direct comparison.</span><span class="reading-line">Positions reflect totals, rather than emissions per person.</span></p></div>
-  
-  
-  <div id="bump-panel">
-    
-    <div id="bump3" aria-label="Annual global emissions rankings of the ten largest 2025 emitters"></div>
+ <section class="chapter" id="change" aria-labelledby="change-heading"><header class="chapter-header chapter-question-layout"><div class="chapter-introduction"><p class="eyebrow">02 / CHANGING TRAJECTORIES</p><h2 id="change-heading">Today’s pattern has a history</h2><p>Trace national totals, then follow the changing sector mix.</p></div><aside class="comparison-prompt" aria-label="Tracing change over time"><h3>Tracing change over time</h3><p class="chapter-question-tags"><span class="chapter-question-tag">When did national emissions reach their peaks?</span><span class="chapter-question-tag">How have the major sources evolved over time?</span></p></aside></header>
+  <section class="chart-block panel-grid" aria-labelledby="chart-heading-2"><div class="evidence-column"><div class="chart-heading"><h3 id="chart-heading-2">Six countries, different emissions paths</h3><p class="chart-description">Some countries grew; others fell below earlier peaks.<br>These are <strong>annual totals</strong>, not cumulative emissions.</p></div><div class="chart-main"><div id="trend-panel"><div id="trend2" aria-label="Greenhouse gas emissions trends for six selected countries"></div></div></div></div><aside class="reading-aside"><p class="stat-label">China’s absolute increase</p><p class="stat-number">+14,293</p><p>Mt CO₂eq added, 1970–2025.</p><div class="reading-tip"><h4>Reading the peaks</h4><p>White-centred circles mark peaks.</p><p class="peak-followup">Emissions can fall from a peak<br>while remaining above earlier levels.</p></div><div class="country-legend chart-corner-legend" aria-label="Country colours"><h4>Countries</h4><ul><li><span class="country-legend-line" style="--country-colour:#176e63"></span><span>China</span></li><li><span class="country-legend-line" style="--country-colour:#b56b2a"></span><span>United States</span></li><li><span class="country-legend-line" style="--country-colour:#548faf"></span><span>India</span></li><li><span class="country-legend-line" style="--country-colour:#8c719d"></span><span>Russia</span></li><li><span class="country-legend-line" style="--country-colour:#66756c"></span><span>Japan</span></li><li><span class="country-legend-line" style="--country-colour:#b64d54"></span><span>Australia</span></li></ul></div></aside></section>
+  <section class="chart-block panel-grid" aria-labelledby="streamgraph-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="streamgraph-heading">How the world’s emissions sources evolved</h3><p class="chart-description">The sources expanded at different rates over time.<br>Follow each sector through <strong>56 years of annual emissions</strong>.</p></div><div class="chart-main"><div id="sector-streamgraph" aria-label="Centred streamgraph of global annual emissions by sector, 1970 to 2025"></div><div class="stream-brief-findings"><p data-sector="Power &amp; heat">Power &amp; heat added <strong>11,951 Mt</strong> since 1970.</p><p data-sector="Buildings">Buildings added <strong>575 Mt</strong>, the smallest sector increase.</p></div></div></div><aside class="reading-aside"><p class="stat-label">Global annual emissions · 2025</p><p class="stat-number">54,080</p><p>Mt CO₂eq across all eight sectors.</p><div class="reading-tip"><h4>Reading the bands</h4><p><strong>Thickness shows annual emissions</strong>.<br>Vertical position has no magnitude meaning.<br>Values are annual, not accumulated across years.</p></div><div class="country-legend chart-corner-legend" aria-label="Sector colours"><h4>Sectors</h4><ul><li><span class="country-legend-line" style="--country-colour:#267f78"></span><span>Power &amp; heat</span></li><li><span class="country-legend-line" style="--country-colour:#9ebdb1"></span><span>Other energy</span></li><li><span class="country-legend-line" style="--country-colour:#6e8394"></span><span>Manufacturing</span></li><li><span class="country-legend-line" style="--country-colour:#bd8548"></span><span>Transport</span></li><li><span class="country-legend-line" style="--country-colour:#b8a86c"></span><span>Buildings</span></li><li><span class="country-legend-line" style="--country-colour:#4c79a4"></span><span>Industry processes</span></li><li><span class="country-legend-line" style="--country-colour:#83954e"></span><span>Agriculture</span></li><li><span class="country-legend-line" style="--country-colour:#9a859e"></span><span>Waste &amp; other</span></li></ul></div></aside></section></section>
 
+ <section class="chapter" id="sources" aria-labelledby="sources-heading"><header class="chapter-header chapter-question-layout"><div class="chapter-introduction"><p class="eyebrow">03 / SOURCES OF EMISSIONS</p><h2 id="sources-heading">Different sources, different national mixes</h2><p>Compare national detail with continental emissions patterns.</p></div><aside class="comparison-prompt" aria-label="Looking behind the totals"><h3>Looking behind the totals</h3><p class="chapter-question-tags"><span class="chapter-question-tag">Which sectors contribute the most?</span><span class="chapter-question-tag">Do countries share the same mix?</span></p></aside></header>
+  <section class="chart-block panel-grid" aria-labelledby="global-sectors-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="global-sectors-heading">What drives the world’s emissions?</h3><p class="chart-description">Energy includes <strong>power generation, transport and fuel supply</strong>.<br>Industrial processes and agriculture form separate branches.</p><p id="global-mix-adjustment-note" class="note" hidden="hidden"></p></div><div class="chart-main"><div id="global-sectors-chart" aria-label="Nested treemap of global greenhouse gas emissions by source"></div></div></div><aside class="stat-aside"><p class="stat-label">Largest individual source</p><p class="stat-number" id="global-mix-leading-share">29.2%</p><p id="global-mix-leading-description">Power &amp; heat accounts for this share<br>of global emissions.</p><div class="aside-control"><h4>Explore a country</h4><div id="global-mix-controls"></div></div><div class="reading-tip"><h4>Exploring the hierarchy</h4><p>Colours identify the five major sectors.<br>Sector legends expand their individual sources.</p></div><div class="country-legend chart-corner-legend" aria-label="Sector colours"><h4>Sectors</h4><ul><li><span class="country-legend-line" style="--country-colour:#267f78"></span><span>Energy</span></li><li><span class="country-legend-line" style="--country-colour:#4c79a4"></span><span>Industry</span></li><li><span class="country-legend-line" style="--country-colour:#83954e"></span><span>Agriculture</span></li><li><span class="country-legend-line" style="--country-colour:#bd8548"></span><span>Waste</span></li><li><span class="country-legend-line" style="--country-colour:#83847e"></span><span>Other</span></li></ul></div></aside></section>
+  <section class="chart-block panel-grid" aria-labelledby="chart-heading-4"><div class="evidence-column"><div class="chart-heading"><h3 id="chart-heading-4">Different continents, different sources</h3><p class="chart-description">Power and heat lead in <strong>Asia and Europe</strong>.<br>Agriculture leads in <strong>Africa, South America and Oceania</strong>.</p></div><div class="chart-main"><div id="sector4" aria-label="2025 sector shares of greenhouse gas emissions across six continents"></div></div></div><aside class="reading-aside"><p class="stat-label">North America’s leading source</p><p>Transport contributes <strong>27.4%</strong>, the largest sector share.</p><div class="reading-tip"><h4>Comparing continental shares</h4><p>Across rows: compare sources within one continent.<br>Down columns: compare one source between continents.<br>Shares use summed emissions, not averaged country percentages.</p></div><div class="share-colour-legend chart-corner-legend" aria-label="Share of continental emissions colour scale"><h4>Share of continental emissions</h4><div class="share-colour-gradient"></div><div class="share-colour-labels"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div></div></aside></section>
+  </section>
 
-  </div><p class="note"><span class="reading-line">Country names sit beside their corresponding lines.</span><span class="reading-line">Hover over points for exact ranks and emissions.</span></p></section>
-</div>
+ <section class="chapter" id="australia" aria-labelledby="australia-heading"><header class="chapter-header chapter-question-layout"><div class="chapter-introduction"><p class="eyebrow">04 / AUSTRALIA IN FOCUS</p><h2 id="australia-heading">A national total hides local hotspots</h2><p>Zoom into Australia to explore its uneven emissions footprint.</p></div><aside class="comparison-prompt" aria-label="Australia in context"><h3>Australia in context</h3><p class="chapter-question-tags"><span class="chapter-question-tag">Where are Australia’s hotspots and sector differences?</span><span class="chapter-question-tag">Have national and per-person emissions moved together?</span></p></aside></header>
+  <section class="chart-block panel-grid" aria-labelledby="australia-hotspots-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="australia-hotspots-heading">Australia’s emissions hotspots</h3><p class="chart-description">The grid locates emissions within Australia in 2025.<br>It reveals <strong>concentrated hotspots</strong> alongside lower-emitting inland areas.</p></div><div class="australia-bin-map">
+   
+   
+   <div id="australia-bin-chart" aria-label="Australian greenhouse gas emissions in equal-area square bins in 2025"></div>   </div>
+  </div><aside class="bin-reading-guide">
+   <fieldset id="bin-grid-controls"><legend>Choose a grid size</legend>
+    <label><input type="radio" name="australia-grid" value="50" checked>50 × 50 km</label>
+    <label><input type="radio" name="australia-grid" value="100">100 × 100 km</label>
+   </fieldset>
+   <div class="bin-stat" aria-live="polite"><p class="stat-label">A concentrated footprint</p><p id="bin-share-value" class="bin-stat-number">86%</p><p><span class="reading-line">of mapped emissions come from</span><span class="reading-line">the highest-emitting tenth of sampled<br>squares.</span></p></div>
+   <div class="bin-how-to"><h3>Reading the grid</h3><p>Each tile totals emissions within an equal-area square.<br><strong>1 kt CO₂eq = 1,000 tonnes CO₂eq.</strong><br>1,000 kt equals 1 Mt CO₂eq.<br>Grey indicates no sampled source cells.</p></div>
+<p class="sidebar-caution">Larger squares cover four times the area.<br>Colours show totals, rather than density.</p>
+  </aside>
+ <div class="bin-colour-key chart-corner-legend" aria-label="Annual emissions in thousand tonnes CO2 equivalent per square">
+    <p>Annual emissions (kt CO₂eq per square)</p>
+    <div class="bin-key-swatches">
+     <span><i style="background:#eee9c9"></i>Under 1</span>
+     <span><i style="background:#ced7a8"></i>1–10</span>
+     <span><i style="background:#a6bf87"></i>10–50</span>
+     <span><i style="background:#69a68c"></i>50–250</span>
+     <span><i style="background:#2e8279"></i>250–1,000</span>
+     <span><i style="background:#15514d"></i>1,000+</span>
+    </div>
+   </div>
+   
+  </section>
+ <section class="chart-block panel-grid" aria-labelledby="butterfly-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="butterfly-heading">Where Australia differs from its high-income peers</h3><p class="chart-description">Compare the same sectors on a <strong>per-person basis</strong>.<br>The agricultural gap stands out alongside energy emissions.</p></div><div class="chart-main"><div id="australia-butterfly" aria-label="2025 sector emissions per person in Australia and 76 other high-income countries"></div></div></div><aside class="reading-aside"><p class="stat-label">Agriculture · tonnes per person</p><div class="butterfly-stat-pair"><div><p class="stat-number">4.77</p><p>Australia</p></div><div><p class="stat-number">0.88</p><p>Other high-income<br>countries</p></div></div><div class="reading-tip butterfly-insights"><h4>Where the gaps stand out</h4><p>Agriculture is <strong>5.4 times</strong> the peer rate.<br>Energy is <strong>4.54 tonnes higher per person</strong>.</p></div><div class="reading-tip butterfly-reference"><h4>Reference group</h4><p><strong>76 high-income countries</strong>, excluding Australia.<br>Combined sector emissions ÷ combined population.</p></div></aside></section><section class="chart-block panel-grid" aria-labelledby="australia-trajectory-heading"><div class="evidence-column"><div class="chart-heading"><h3 id="australia-trajectory-heading">Australia’s two emissions stories</h3><p class="chart-description">Since 1970, total emissions rose while per-person emissions fell.<br>The connected path reveals <strong>why both measures matter</strong>.</p></div><div class="chart-main"><div id="australia-trajectory-chart" aria-label="Connected scatterplot comparing Australian total and per-person emissions from 1970 to 2025"></div></div></div><aside class="reading-aside"><p class="stat-label">1970 → 2025</p><div class="australia-change-pair"><div><p class="stat-number">+83%</p><p>Total emissions</p></div><div><p class="stat-number">−17%</p><p>Emissions per person</p></div></div><div class="aside-control"><h4><label for="australia-trajectory-year">Explore a year · <output id="australia-trajectory-year-value">2025</output></label></h4><input id="australia-trajectory-year" type="range" min="1970" max="2025" value="2025"><div class="year-endpoints"><span>1970</span><span>2025</span></div></div><div class="aside-control trajectory-view-control"><h4>Choose a view</h4><div class="trajectory-view-buttons" role="group" aria-label="Chart scale"><button type="button" id="trajectory-full" aria-pressed="true">Full scale</button><button type="button" id="trajectory-detail" aria-pressed="false">Focus on changes</button></div><p class="trajectory-scale-note" id="trajectory-scale-note">Both axes start at zero.</p></div><div class="reading-tip"><h4>Following Australia’s path</h4><p>Each point is one year; arrows follow time.<br>Right: higher totals.<br>Up: higher per-person emissions.</p></div></aside></section></section>
 
-<section class="chart-section" aria-labelledby="waffle-heading">
- <p class="section-kicker">04 / PEOPLE AND EMISSIONS</p>
- <h2 id="waffle-heading">Ten countries, an unequal emissions footprint</h2>
- <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare the same ten countries across both measures.</span><span class="reading-line">Each square represents one percentage point.</span></p></div><p class="chart-insight"><span class="reading-line">They produce <strong>67.8%</strong> of covered emissions.</span><span class="reading-line">They hold <strong>50.8%</strong> of the covered population.</span></p></div>
- <div class="waffle-comparison">
-  <article><h3>Share of emissions</h3><p class="waffle-number">67.8%</p><div id="emissions-waffle" aria-label="Ten largest emitters share of covered emissions in 2025"></div></article>
-  <article><h3>Share of population</h3><p class="waffle-number">50.8%</p><div id="population-waffle" aria-label="Same ten countries share of covered population in 2025"></div></article>
- </div>
- <div class="waffle-key"><span><i class="waffle-swatch top-ten"></i>Ten largest emitters</span><span><i class="waffle-swatch other-countries"></i>Other covered countries</span></div>
- <p class="note"><span class="reading-line">2025: 203 countries and territories with matched data.</span><span class="reading-line">Both denominators use exactly the same coverage.</span><span class="reading-line">Squares round shares to the nearest percentage point.</span><span class="reading-line">International transport and land use are excluded.</span></p>
- <details class="note"><summary>Which ten countries?</summary><p>China, United States, India, Russia, Indonesia, Brazil, Iran, Japan, Saudi Arabia and Canada.</p><p>Sources: EDGAR 2026 and World Bank SP.POP.TOTL.</p></details>
-</section>
-<section class="chart-section" aria-labelledby="global-sectors-heading">
- <p class="section-kicker">05 / THE GLOBAL MIX</p>
- <h2 id="global-sectors-heading">What drives the world’s emissions?</h2>
- <div class="section-header"><div class="section-copy"><p><span class="reading-line">Each rectangle represents an emissions source.</span><span class="reading-line">Its area shows its global share in 2025.</span></p></div><p class="chart-insight"><span class="reading-line">Power and heat account for <strong>29%</strong>.</span><span class="reading-line">Explore the blocks to compare the remaining sources.</span></p></div>
- <div id="global-sectors-chart" aria-label="Global greenhouse gas emissions by source in 2025"></div>
- <p class="note"><span class="reading-line">Hover for global shares and emission totals.</span><span class="reading-line">Includes international transport; excludes land use and forestry.</span></p>
-</section>
-<section class="chart-section sector-section" aria-labelledby="chart-heading-4">
-  <p class="section-kicker">06 / NATIONAL DIFFERENCES</p>
-  <h2 id="chart-heading-4">Different countries, different sources</h2>
-  <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare national emissions structures in 2025.</span><span class="reading-line">Each row totals 100% across eight sector groups.</span></p></div><p class="chart-insight"><span class="reading-line">Darker cells reveal each country’s dominant sources.</span><span class="reading-line">Percentages compare structure, rather than national size.</span></p></div>
-  <div id="sector4" aria-label="2025 sector shares of greenhouse gas emissions in ten selected countries"></div>
-  <p class="note"><span class="reading-line">Hover for sector shares and absolute emissions.</span><span class="reading-line">Source: EDGAR 2026, IPCC 2006 sector classification.</span><span class="reading-line">Land use and forestry are excluded.</span></p>
-</section>
-<section class="chart-section" aria-labelledby="income-heading">
- <p class="section-kicker">07 / INCOME AND INEQUALITY</p>
- <h2 id="income-heading">Does higher income mean a larger footprint?</h2>
- <div class="section-header"><div class="section-copy"><p><span class="reading-line">Each dot represents one country or territory.</span><span class="reading-line">Compare 2025 emissions per person across income groups.</span></p></div><p class="chart-insight"><span class="reading-line" id="income-selected-summary">Australia emits 20.9 tonnes CO₂eq per person.</span><span class="reading-line" id="income-selected-comparison">Its footprint exceeds the high-income country median.</span></p></div>
- <div id="income-country-control"></div>
- <div id="income-jitter-chart" aria-label="2025 national greenhouse gas emissions per person by World Bank income group, highlighting Australia"></div>
- <p class="note"><span class="reading-line">Horizontal marks show each group’s median country value.</span><span class="reading-line">Dots spread sideways only to reduce overlap.</span><span class="reading-line">All 203 matched countries use the same linear scale.</span></p>
- <details class="note"><summary>Data and grouping</summary><p>Emissions and population: 2025. Income groups come from the downloaded World Bank metadata snapshot, with population workbook updated 8 October 2026. These are not historical income classifications. Country medians give each country equal weight; they are not population-weighted group averages. Association does not establish causation. Sources: EDGAR 2026 and World Bank SP.POP.TOTL. Land use and forestry excluded.</p></details>
-</section>
-<section class="chart-section" aria-labelledby="sector-growth-heading">
- <p class="section-kicker">08 / SOURCES OF GROWTH</p>
- <h2 id="sector-growth-heading">Where has the extra pollution come from?</h2>
- <div class="section-header"><div class="section-copy"><p><span class="reading-line">Compare sector emissions in 1990 and 2025.</span><span class="reading-line">Longer stems mean larger absolute increases.</span></p></div><p class="chart-insight"><span class="reading-line">Power and heat drive the largest increase.</span><span class="reading-line">They contribute <strong>37%</strong> of the net growth.</span></p></div>
- <div id="sector-growth-chart" aria-label="Change in global sector greenhouse gas emissions from 1990 to 2025"></div>
- <p class="note"><span class="reading-line">Values show changes in annual emissions, not cumulative totals.</span><span class="reading-line">Source: EDGAR 2026, IPCC 2006 sector data.</span><span class="reading-line">Includes international transport; excludes land use and forestry.</span></p>
-</section>
-  </main>
+ <section class="closing whole-story-finale" aria-labelledby="closing-heading"><p class="eyebrow">THE PICTURE TO TAKE AWAY</p><h2 id="closing-heading">One footprint, several perspectives</h2><p class="closing-lead">Population, income, history and sector mix change the comparison.<br> Australia shows why national totals alone cannot tell the story.</p><div class="closing-findings"><div><h3>People and emissions</h3><p>The ten largest emitters contribute <strong>67.8%</strong> of covered emissions.<br>They account for <strong>50.8%</strong> of the covered population.</p></div><div><h3>Sources and change</h3><p>Power and heat produce about <strong>29%</strong> of global emissions.<br>Their annual emissions rose by <strong>11,951 Mt CO₂eq</strong><br>between 1970 and 2025.</p></div><div><h3>Australia in focus</h3><p>Per-person emissions fell while national totals grew since 1970.<br>Local hotspots reveal another layer of concentration.</p></div></div></section><footer class="sources-footer" aria-labelledby="footer-heading"><h2 id="footer-heading">Sources and methodology</h2><div class="footer-grid">
+  <div><h3>Data sources</h3><p><a href="https://edgar.jrc.ec.europa.eu/dataset_ghg2026">EDGAR 2026</a>: national, sector and gridded emissions.<br><a href="https://data.worldbank.org/indicator/SP.POP.TOTL">World Bank SP.POP.TOTL</a>: population and income metadata.<br><a href="https://www.naturalearthdata.com/">Natural Earth</a>: boundaries and country label locations.</p></div>
+  <div><h3>Coverage and comparison</h3><p>Land use and forestry are excluded.<br>Global sector totals include international transport; national charts exclude it.<br>Population comparisons match country codes and years.<br>Peer rates pool emissions and population, excluding Australia.</p></div>
+ </div><p class="author-credit"><span>Author: Yuhang Zhai</span><time datetime="2026-10">10/2026</time></p></footer>
+</main>
+  <script src="typography.js?v=compact-notes-20261026"></script><script src="chart_annotations.js?v=compact-notes-20261026"></script>
+  <script src="maps_comparison.js?v=sidebar-content-roles-20261026"></script>
 
-  <script src="chart_annotations.js"></script>
-  <script src="maps_comparison.js"></script>
-
-  <script src="trend_chart.js"></script>
+  <script src="interactive_chart_legends.js?v=compact-notes-20261026"></script>
+<script src="trend_chart.js?v=compact-notes-20261026"></script>
 
 <!-- External JavaScript, following the Week 7 embedding example. -->
-<script src="bump_chart.js"></script>
-<script>vegaEmbed("#sector4", "ghg_national_differences.vg.json", {renderer: "svg", actions: false}).catch(console.error);</script>
-<script src="sector_story.js"></script>
-<script src="waffle_comparison.js"></script>
-<script src="income_distribution.js"></script>
-</body>
+<script>vegaEmbed("#sector4", "ghg_national_differences.vg.json?v=country-continent-20261026", {renderer: "svg", actions: false}).catch(console.error);</script>
+<script src="sector_story.js?v=compact-notes-20261026"></script>
+<script src="waffle_comparison.js?v=compact-notes-20261026"></script>
+<script src="income_distribution.js?v=income-map-notes-20261026"></script>
+<script src="australia_hotspots.js?v=offshore-city-labels-20261026"></script>
+<script src="background_bubbles.js?v=compact-notes-20261026"></script>
+<script src="australia_trajectory.js?v=compact-notes-20261026"></script><script src="stream_butterfly.js?v=compact-notes-20261026"></script></body>
 
 </html>

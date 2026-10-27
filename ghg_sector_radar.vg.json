@@ -141,7 +141,7 @@
       "orient": "bottom",
       "direction": "horizontal",
       "title": null,
-      "labelFont": "Segoe UI",
+      "labelFont": "Manrope",
       "labelFontSize": 12,
       "symbolStrokeWidth": 3,
       "columnPadding": 25
@@ -232,7 +232,7 @@
             "value": "middle"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 11
@@ -260,7 +260,7 @@
             "signal": "format(datum.value,'.0%')"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
             "value": 9

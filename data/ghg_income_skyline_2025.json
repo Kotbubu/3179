@@ -1,0 +1,72 @@
+[
+  {
+    "income_group": "Low income",
+    "year": 2025,
+    "population": 755301381.0,
+    "emissions_mt": 1061.1671315234419,
+    "countries": 24,
+    "population_share": 0.09250416676835463,
+    "emissions_share": 0.020257622961789533,
+    "per_person": 1.4049585479619848,
+    "start": 0,
+    "end": 0.09250416676835463,
+    "midpoint": 0.046252083384177314,
+    "label_lines": [
+      "Low income",
+      "1.4 t/person"
+    ]
+  },
+  {
+    "income_group": "Lower middle income",
+    "year": 2025,
+    "population": 2939869038.0,
+    "emissions_mt": 7728.879638045826,
+    "countries": 46,
+    "population_share": 0.36005512846834614,
+    "emissions_share": 0.1475438929208165,
+    "per_person": 2.6289877331759652,
+    "start": 0.09250416676835463,
+    "end": 0.4525592952367008,
+    "midpoint": 0.2725317310025277,
+    "label_lines": [
+      "Lower middle",
+      "income",
+      "2.6 t/person"
+    ]
+  },
+  {
+    "income_group": "Upper middle income",
+    "year": 2025,
+    "population": 3070163040.0,
+    "emissions_mt": 26072.25726977622,
+    "countries": 56,
+    "population_share": 0.37601265005260015,
+    "emissions_share": 0.4977179765977659,
+    "per_person": 8.49214094824626,
+    "start": 0.4525592952367008,
+    "end": 0.828571945289301,
+    "midpoint": 0.6405656202630009,
+    "label_lines": [
+      "Upper middle",
+      "income",
+      "8.5 t/person"
+    ]
+  },
+  {
+    "income_group": "High income",
+    "year": 2025,
+    "population": 1399719072.0,
+    "emissions_mt": 17521.291682869476,
+    "countries": 77,
+    "population_share": 0.17142805471069908,
+    "emissions_share": 0.334480507519628,
+    "per_person": 12.517720186404288,
+    "start": 0.828571945289301,
+    "end": 1.0,
+    "midpoint": 0.9142859726446505,
+    "label_lines": [
+      "High income",
+      "12.5 t/person"
+    ]
+  }
+]

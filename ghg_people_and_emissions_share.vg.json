@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 220,
-  "height": 220,
+  "width": 280,
+  "height": 280,
   "background": "transparent",
   "data": {
     "url": "data/ghg_waffle_shares.json"
@@ -74,6 +74,24 @@
     "view": {
       "stroke": null
     },
-    "font": "Segoe UI"
+    "font": "Manrope",
+    "axis": {
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 400,
+      "labelColor": "#526358",
+      "titleColor": "#526358"
+    },
+    "legend": {
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "labelColor": "#526358",
+      "titleColor": "#173f35"
+    }
   }
 }

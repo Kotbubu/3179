@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Zero-baseline waterfall decomposes Australian emissions changes from 1970 using symmetric two-factor accounting. Components are not causal estimates.",
+  "width": "container",
+  "height": 340,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "transparent",
+  "data": {
+    "url": "data/ghg_australia_waterfall.json"
+  },
+  "params": [
+    {
+      "name": "end_year",
+      "value": 2025
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.year === end_year"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "step",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          -0.6,
+          3.6
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "labelExpr": "datum.value === 0 ? ['1970','total'] : datum.value === 1 ? ['Population','component'] : datum.value === 2 ? ['Per-person','component'] : [format(end_year,'d'),'total']",
+        "labelAngle": 0,
+        "labelLineHeight": 15,
+        "grid": false,
+        "labelLimit": 150
+      },
+      "title": null
+    },
+    "y": {
+      "field": "high",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          750
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          0,
+          150,
+          300,
+          450,
+          600,
+          750
+        ]
+      },
+      "title": "Annual emissions (Mt CO₂eq)"
+    },
+    "tooltip": [
+      {
+        "field": "title",
+        "title": "Component"
+      },
+      {
+        "field": "year",
+        "title": "Comparison year"
+      },
+      {
+        "field": "value",
+        "title": "Amount (Mt CO₂eq)",
+        "format": ",.1f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect"
+      },
+      "encoding": {
+        "x": {
+          "field": "left",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "right"
+        },
+        "y2": {
+          "field": "low"
+        },
+        "color": {
+          "field": "kind",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Total",
+              "Population",
+              "Per-person"
+            ],
+            "range": [
+              "#176e63",
+              "#bd8548",
+              "#83b6af"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.step < 3"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#89988e",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "right",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "next_left"
+        },
+        "y": {
+          "field": "end",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Manrope",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "dy": -10,
+        "color": "#173f35"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Manrope",
+    "axis": {
+      "domain": false,
+      "ticks": false,
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 400,
+      "labelColor": "#526358",
+      "titleColor": "#526358",
+      "gridColor": "#e2e6dc",
+      "labelPadding": 9
+    }
+  }
+}

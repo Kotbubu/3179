@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 230,
+  "height": 0,
+  "padding": 2,
+  "background": "transparent",
+  "scales": [
+    {
+      "name": "color",
+      "type": "threshold",
+      "domain": [
+        2,
+        5,
+        10,
+        20,
+        40
+      ],
+      "range": {
+        "scheme": "yelloworangered"
+      },
+      "interpolate": "hcl"
+    }
+  ],
+  "legends": [
+    {
+      "direction": "horizontal",
+      "labelColor": "#526358",
+      "labelFont": "Manrope",
+      "labelFontSize": 12,
+      "orient": "top",
+      "title": "Tonnes CO₂eq per person",
+      "titleColor": "#173f35",
+      "titleFont": "Manrope",
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "fill": "color",
+      "labelOverlap": "greedy",
+      "symbolType": "circle",
+      "encode": {
+        "symbols": {
+          "update": {
+            "stroke": {
+              "value": "white"
+            }
+          }
+        }
+      },
+      "gradientLength": 230
+    }
+  ]
+}

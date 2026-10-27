@@ -1,0 +1,92 @@
+[
+  {
+    "group": "Australia",
+    "sector": "Energy",
+    "value": 14.521569476690846,
+    "emissions_mt": 401.00458789439597,
+    "population": 27614411.0,
+    "country_count": 1,
+    "year": 2025
+  },
+  {
+    "group": "Australia",
+    "sector": "Industry",
+    "value": 0.9833961571800449,
+    "emissions_mt": 27.155905660190363,
+    "population": 27614411.0,
+    "country_count": 1,
+    "year": 2025
+  },
+  {
+    "group": "Australia",
+    "sector": "Agriculture",
+    "value": 4.769416364418553,
+    "emissions_mt": 131.7046237171797,
+    "population": 27614411.0,
+    "country_count": 1,
+    "year": 2025
+  },
+  {
+    "group": "Australia",
+    "sector": "Waste",
+    "value": 0.5170530552123287,
+    "emissions_mt": 14.278115575438937,
+    "population": 27614411.0,
+    "country_count": 1,
+    "year": 2025
+  },
+  {
+    "group": "Australia",
+    "sector": "Other",
+    "value": 0.1419228511044831,
+    "emissions_mt": 3.9191159406910003,
+    "population": 27614411.0,
+    "country_count": 1,
+    "year": 2025
+  },
+  {
+    "group": "Other high-income countries",
+    "sector": "Energy",
+    "value": 9.981122304013102,
+    "emissions_mt": 13695.144435347434,
+    "population": 1372104661.0,
+    "country_count": 76,
+    "year": 2025
+  },
+  {
+    "group": "Other high-income countries",
+    "sector": "Industry",
+    "value": 0.9997694903247122,
+    "emissions_mt": 1371.788377600132,
+    "population": 1372104661.0,
+    "country_count": 76,
+    "year": 2025
+  },
+  {
+    "group": "Other high-income countries",
+    "sector": "Agriculture",
+    "value": 0.8820889878083507,
+    "emissions_mt": 1210.3184115886102,
+    "population": 1372104661.0,
+    "country_count": 76,
+    "year": 2025
+  },
+  {
+    "group": "Other high-income countries",
+    "sector": "Waste",
+    "value": 0.4553719743615547,
+    "emissions_mt": 624.8180085102616,
+    "population": 1372104661.0,
+    "country_count": 76,
+    "year": 2025
+  },
+  {
+    "group": "Other high-income countries",
+    "sector": "Other",
+    "value": 0.029997785303941406,
+    "emissions_mt": 41.160101035215305,
+    "population": 1372104661.0,
+    "country_count": 76,
+    "year": 2025
+  }
+]

@@ -26,7 +26,14 @@
       "sort": "-x",
       "title": null,
       "axis": {
-        "labelLimit": 150
+        "labelLimit": 150,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "x": {
@@ -38,7 +45,14 @@
       },
       "axis": {
         "format": ",.0f",
-        "tickCount": 5
+        "tickCount": 5,
+        "labelFont": "Manrope",
+        "titleFont": "Manrope",
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titleFontWeight": 400,
+        "labelColor": "#526358",
+        "titleColor": "#526358"
       }
     },
     "tooltip": [
@@ -112,7 +126,7 @@
     "bottom": 4
   },
   "config": {
-    "font": "Segoe UI",
+    "font": "Manrope",
     "view": {
       "stroke": null
     },
@@ -124,12 +138,23 @@
       "labelColor": "#526358",
       "titleColor": "#526358",
       "titleFontWeight": 400,
-      "labelFontSize": 11,
-      "titleFontSize": 11,
-      "labelPadding": 8
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "labelPadding": 8,
+      "labelFont": "Manrope",
+      "titleFont": "Manrope"
     },
     "axisY": {
       "grid": false
+    },
+    "legend": {
+      "labelFont": "Manrope",
+      "titleFont": "Manrope",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600,
+      "labelColor": "#526358",
+      "titleColor": "#173f35"
     }
   }
 }

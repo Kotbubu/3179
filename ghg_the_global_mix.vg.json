@@ -1,67 +1,122 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "width": 800,
-  "height": 265,
-  "padding": 0,
+  "height": 425,
+  "padding": {
+    "left": 4,
+    "right": 4,
+    "top": 4,
+    "bottom": 46
+  },
   "autosize": {
-    "type": "fit",
-    "contains": "padding",
+    "type": "none",
     "resize": true
   },
   "background": "transparent",
   "signals": [
     {
       "name": "width",
-      "init": "containerSize()[0] || 800",
+      "init": "max(240, (containerSize()[0] || 800) - 8)",
       "on": [
         {
           "events": "window:resize",
-          "update": "containerSize()[0] || 800"
+          "update": "max(240, containerSize()[0] - 8)"
         }
       ]
+    },
+    {
+      "name": "focus_category",
+      "value": "All sectors"
+    },
+    {
+      "name": "selected_country",
+      "value": "World"
+    },
+    {
+      "name": "selected_country_name",
+      "value": "World"
+    },
+    {
+      "name": "largest_source_id",
+      "value": "1.A.1.a"
     }
   ],
   "data": [
     {
-      "name": "source",
-      "url": "data/ghg_global_sectors.csv",
-      "format": {
-        "type": "csv",
-        "parse": {
-          "emissions_2025": "number",
-          "share": "number"
-        }
-      },
+      "name": "selected_sources",
+      "url": "data/ghg_country_sources_2025.json",
       "transform": [
         {
-          "type": "formula",
-          "expr": "'root'",
-          "as": "parent"
+          "type": "filter",
+          "expr": "datum.country_code === selected_country"
+        }
+      ]
+    },
+    {
+      "name": "hierarchy",
+      "url": "data/ghg_the_global_mix_hierarchy.json",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "selected_sources",
+          "key": "id",
+          "fields": [
+            "id"
+          ],
+          "values": [
+            "emissions_mt"
+          ],
+          "as": [
+            "emissions_mt"
+          ],
+          "default": 0
+        },
+        {
+          "type": "joinaggregate",
+          "fields": [
+            "emissions_mt"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "selected_total_mt"
+          ]
+        },
+        {
+          "type": "joinaggregate",
+          "groupby": [
+            "category"
+          ],
+          "fields": [
+            "emissions_mt"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "category_total_mt"
+          ]
         },
         {
           "type": "formula",
-          "expr": "datum.sector",
-          "as": "id"
-        }
-      ]
-    },
-    {
-      "name": "hierarchy_root",
-      "values": [
+          "expr": "datum.emissions_mt / datum.selected_total_mt",
+          "as": "share"
+        },
         {
-          "id": "root",
-          "parent": null,
-          "sector": "All sectors"
-        }
-      ]
-    },
-    {
-      "name": "tree",
-      "source": [
-        "source",
-        "hierarchy_root"
-      ],
-      "transform": [
+          "type": "formula",
+          "expr": "datum.category_total_mt / datum.selected_total_mt",
+          "as": "category_share"
+        },
+        {
+          "type": "formula",
+          "expr": "max(0, datum.emissions_mt)",
+          "as": "area_mt"
+        },
+        {
+          "type": "filter",
+          "expr": "focus_category == 'All sectors' || datum.id == 'all_emissions' || datum.category == focus_category"
+        },
         {
           "type": "stratify",
           "key": "id",
@@ -69,7 +124,7 @@
         },
         {
           "type": "treemap",
-          "field": "emissions_2025",
+          "field": "area_mt",
           "sort": {
             "field": "value",
             "order": "descending"
@@ -84,51 +139,90 @@
               "signal": "height"
             }
           ],
-          "paddingInner": 3,
-          "round": true
+          "paddingInner": 2,
+          "paddingOuter": 2,
+          "paddingTop": 24,
+          "round": false
+        }
+      ]
+    },
+    {
+      "name": "parents",
+      "source": "hierarchy",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth == 1"
         }
       ]
     },
     {
       "name": "leaves",
-      "source": "tree",
+      "source": "hierarchy",
       "transform": [
         {
           "type": "filter",
-          "expr": "!datum.children"
+          "expr": "datum.depth == 2"
+        }
+      ]
+    },
+    {
+      "name": "other_parent",
+      "source": "parents",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.category == 'Other' && focus_category == 'All sectors'"
         }
       ]
     }
   ],
   "scales": [
     {
-      "name": "shade",
-      "type": "linear",
-      "domain": {
-        "data": "source",
-        "field": "share"
-      },
+      "name": "category",
+      "type": "ordinal",
+      "domain": [
+        "Energy",
+        "Industry",
+        "Agriculture",
+        "Waste",
+        "Other"
+      ],
       "range": [
-        "#bfd3bb",
-        "#176e63"
+        "#267f78",
+        "#4c79a4",
+        "#83954e",
+        "#bd8548",
+        "#83847e"
+      ]
+    },
+    {
+      "name": "child_colour",
+      "type": "ordinal",
+      "domain": [
+        "Energy",
+        "Industry",
+        "Agriculture",
+        "Waste",
+        "Other"
+      ],
+      "range": [
+        "#83b6af",
+        "#9bb8d2",
+        "#bdca96",
+        "#dbb786",
+        "#b8bbb3"
       ]
     }
   ],
+  "legends": [],
   "marks": [
     {
       "type": "rect",
       "from": {
-        "data": "leaves"
+        "data": "parents"
       },
       "encode": {
-        "enter": {
-          "stroke": {
-            "value": "#f7f6ef"
-          },
-          "strokeWidth": {
-            "value": 2
-          }
-        },
         "update": {
           "x": {
             "field": "x0"
@@ -143,16 +237,209 @@
             "field": "y1"
           },
           "fill": {
-            "scale": "shade",
-            "field": "share"
+            "scale": "category",
+            "field": "category"
+          },
+          "stroke": {
+            "value": "#f7f6ef"
+          },
+          "strokeWidth": {
+            "value": 2
           },
           "tooltip": {
-            "signal": "{'Sector':datum.sector,'2025 emissions (Mt CO₂eq)':format(datum.emissions_2025,',.1f'),'Global share':format(datum.share,'.1%')}"
+            "signal": "{'Country / scope':selected_country_name,'Category':datum.name,'2025 emissions (Mt CO₂eq)':format(datum.category_total_mt,',.1f'),'Share of selected total':format(datum.category_share,'.2%')}"
           }
-        },
-        "hover": {
-          "fillOpacity": {
-            "value": 0.8
+        }
+      },
+      "interactive": true
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "child_colour",
+            "field": "category"
+          },
+          "stroke": {
+            "value": "#f7f6ef"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "tooltip": {
+            "signal": "{'Country / scope':selected_country_name,'Category':datum.category,'Subcategory':datum.name,'2025 emissions (Mt CO₂eq)':format(datum.emissions_mt,',.1f'),'Share of total':format(datum.share,'.2%'),'IPCC definition':datum.full_name}"
+          }
+        }
+      },
+      "interactive": true
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "parents"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0+6"
+          },
+          "y": {
+            "signal": "datum.y0+12"
+          },
+          "text": {
+            "field": "name"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "white"
+          },
+          "limit": {
+            "signal": "max(0,datum.x1-datum.x0-12)"
+          },
+          "opacity": {
+            "signal": "datum.x1-datum.x0 >= 45 && datum.y1-datum.y0 >= 25 ? 1 : 0"
+          }
+        }
+      },
+      "interactive": false
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0+6"
+          },
+          "y": {
+            "signal": "(datum.y0+datum.y1)/2"
+          },
+          "text": {
+            "field": "name_lines"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#173d39"
+          },
+          "limit": {
+            "signal": "max(0,datum.x1-datum.x0-12)"
+          },
+          "opacity": {
+            "signal": "datum.x1-datum.x0 >= 88 && datum.y1-datum.y0 >= 48 ? 1 : 0"
+          },
+          "lineHeight": {
+            "value": 14
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "other_parent"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "(datum.x0+datum.x1)/2"
+          },
+          "x2": {
+            "signal": "(datum.x0+datum.x1)/2"
+          },
+          "y": {
+            "field": "y1"
+          },
+          "y2": {
+            "signal": "height+12"
+          },
+          "stroke": {
+            "value": "#83847e"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "other_parent"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x1"
+          },
+          "y": {
+            "signal": "height+19"
+          },
+          "text": {
+            "signal": "'Other · ' + format(datum.category_share,'.2%')"
+          },
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "top"
+          },
+          "font": {
+            "value": "Manrope"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#626760"
           }
         }
       }
@@ -162,40 +449,38 @@
       "from": {
         "data": "leaves"
       },
+      "interactive": false,
       "encode": {
         "update": {
           "x": {
-            "signal": "(datum.x0+datum.x1)/2"
+            "signal": "datum.x0+6"
           },
           "y": {
-            "signal": "(datum.y0+datum.y1)/2"
+            "signal": "(datum.y0+datum.y1)/2+20"
           },
           "text": {
-            "signal": "datum.sector == 'Waste & other' ? ['Waste &', 'other'] : datum.sector"
-          },
-          "align": {
-            "value": "center"
-          },
-          "baseline": {
-            "value": "middle"
+            "value": "Largest individual source"
           },
           "font": {
-            "value": "Segoe UI"
+            "value": "Manrope"
           },
           "fontSize": {
-            "signal": "width < 500 ? 10 : 13"
+            "value": 12
           },
           "fontWeight": {
             "value": 600
           },
           "fill": {
-            "signal": "datum.share > 0.22 ? '#ffffff' : '#173f35'"
+            "value": "#173d39"
+          },
+          "baseline": {
+            "value": "middle"
           },
           "limit": {
             "signal": "max(0,datum.x1-datum.x0-12)"
           },
-          "lineHeight": {
-            "value": 15
+          "opacity": {
+            "signal": "focus_category === 'All sectors' && datum.id === largest_source_id && datum.x1-datum.x0 >= 170 ? 1 : 0"
           }
         }
       }
